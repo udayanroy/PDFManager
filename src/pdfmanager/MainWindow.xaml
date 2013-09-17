@@ -5,10 +5,40 @@
     <Grid>
         <TabControl >
             <TabItem Header="Image2PDF">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="200"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" >
+                        <Button x:Name="add1" Content="Button"/>
+                        <Button x:Name="remove1" Content="Button"/>
+                    </StackPanel>
+                    <ListBox x:Name="imglist" Grid.Row="1" />
+                    <Button x:Name="img2pdfstart" Content="Button" HorizontalAlignment="Left" Margin="93,42,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="pdfoption" Content="Button" HorizontalAlignment="Left" Margin="681,42,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
+                    <ProgressBar HorizontalAlignment="Left" Height="43" Margin="10,105,0,0" Grid.Row="2" VerticalAlignment="Top" Width="928"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="374,163,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="27" Width="141"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Merge PDF">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="200"/>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="pdflist" Grid.Row="1"/>
+                    <StackPanel Orientation="Horizontal" >
+                        <Button x:Name="Add" Content="Button"/>
+                        <Button x:Name="remove" Content="Button"/>
+                    </StackPanel>
+                    <Button x:Name="mergepdfstart" Content="Button" HorizontalAlignment="Left" Margin="38,28,0,0" Grid.Row="2" VerticalAlignment="Top" Width="125" Height="44"/>
+                    <Button x:Name="pdfoption1" Content="Button" HorizontalAlignment="Left" Height="44" Margin="687,28,0,0" Grid.Row="2" VerticalAlignment="Top" Width="197"/>
+                    <ProgressBar HorizontalAlignment="Left" Height="57" Margin="38,89,0,0" Grid.Row="2" VerticalAlignment="Top" Width="879"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="281,153,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="37" Width="222"/>
+                </Grid>
             </TabItem>
         </TabControl>
 
