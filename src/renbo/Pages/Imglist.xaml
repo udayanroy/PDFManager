@@ -1,0 +1,36 @@
+﻿<Page x:Class="Imglist"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="445.489" d:DesignWidth="616.917"
+      Title="Imglist">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="Imglistview"  Margin="5,5,5,5" BorderBrush="{x:Null}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="Auto"   DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Size" Width="Auto" DisplayMemberBinding="{Binding Size}"/>
+                    <GridViewColumn Header="Dimensions" Width="Auto"  DisplayMemberBinding="{Binding Dimensions}"/>
+                    <GridViewColumn Header="Path" Width="Auto"  DisplayMemberBinding="{Binding Path}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel  Grid.Row="1" Orientation="Horizontal" Background="Black"  >
+            <Button x:Name="Add" Content="Add" Template="{DynamicResource AddButtonControlTemplate}" Margin="10" Width="43" />
+            <Button x:Name="Remove" Content="Remove" Template="{DynamicResource RemoveButtonControlTemplate}" Width="43" Margin="10"/>
+            <Button x:Name="Clear" Content="Clear" Margin="10" Width="43" Template="{DynamicResource ClearButtonControlTemplate}"/>
+            <Button x:Name="Up" Content="Up" Margin="10" Width="43" Template="{DynamicResource UPButtonControlTemplate}"/>
+            <Button x:Name="Down" Content="Down" Width="43" Margin="10" Style="{DynamicResource DownButtonTemplate}" Template="{DynamicResource DownButtonControlTemplate}"/>
+        </StackPanel>
+        <Grid Grid.Row="2" Background="#FF707070">
+            <Button x:Name="Next" Content="Next" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="75" HorizontalContentAlignment="Center" Margin="0" Template="{DynamicResource NextbButtonControlTemplate}" Height="18"/>
+        </Grid>
+    </Grid>
+</Page>

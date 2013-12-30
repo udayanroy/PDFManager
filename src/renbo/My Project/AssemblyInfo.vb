@@ -11,10 +11,10 @@ Imports System.Windows
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("pdfmanager")> 
+<Assembly: AssemblyTitle("renbo")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("pdfmanager")> 
+<Assembly: AssemblyProduct("renbo")> 
 <Assembly: AssemblyCopyright("Copyright ©  2013")> 
 <Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(false)>
@@ -42,7 +42,7 @@ Imports System.Windows
 
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("d146cb8c-629e-4617-90be-d32401807075")> 
+<Assembly: Guid("e01ef2ed-05e7-496b-be15-36e38e1907c9")> 
 
 ' Version information for an assembly consists of the following four values:
 '
