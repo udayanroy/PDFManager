@@ -85,6 +85,9 @@
     <Compile Include="Controls\pictureviewer.xaml.vb">
       <DependentUpon>pictureviewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageToPdf\I2pMain.xaml.vb">
+      <DependentUpon>I2pMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Imglist.xaml.vb">
       <DependentUpon>Imglist.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConverterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageToPdf\I2pMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
