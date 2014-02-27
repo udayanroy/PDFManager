@@ -14,6 +14,6 @@ Class MainWindow
         ' Add any initialization after the InitializeComponent() call.
         Me.ShowsNavigationUI = False
 
-        Me.NavigationService.Navigate(converter)
+        Me.NavigationService.Navigate(New I2pMain) 'converter)
     End Sub
 End Class

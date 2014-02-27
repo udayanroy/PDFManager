@@ -85,6 +85,7 @@
     <Compile Include="Controls\pictureviewer.xaml.vb">
       <DependentUpon>pictureviewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PieProgressBar.vb" />
     <Compile Include="ImageToPdf\I2pMain.xaml.vb">
       <DependentUpon>I2pMain.xaml</DependentUpon>
     </Compile>
@@ -152,6 +153,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resource4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="resource\newResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="resource\RenboResource.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -210,6 +219,36 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Untitled-1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plus2-256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Prohibit-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\System-Save-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bitmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
