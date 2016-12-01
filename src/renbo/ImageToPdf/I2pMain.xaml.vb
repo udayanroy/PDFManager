@@ -25,6 +25,7 @@ Class I2pMain
             Next
 
         End If
+        enabledesableButtons()
     End Sub
 
     Private Sub imgList_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles imgList.SelectionChanged
@@ -44,7 +45,7 @@ Class I2pMain
             ' End Using
 
         End If
-
+        enabledesableButtons()
     End Sub
 
     Private Sub Remove_Click(sender As Object, e As RoutedEventArgs) Handles Remove.Click
@@ -54,6 +55,7 @@ Class I2pMain
             imgList.Items.Remove(item) '; // or whereever you need to remove them..
 
         Next
+        enabledesableButtons()
     End Sub
 
     Private Sub up_Click(sender As Object, e As RoutedEventArgs) Handles up.Click
@@ -75,6 +77,7 @@ Class I2pMain
                 For Each item In selected
                     imgList.SelectedItems.Add(item)
                 Next
+                imgList.Focus()
             End If
 
         End If
@@ -127,12 +130,14 @@ Class I2pMain
                 For Each item In selected
                     imgList.SelectedItems.Add(item)
                 Next
+                imgList.Focus()
             End If
         End If
     End Sub
 
     Private Sub Clear_Click(sender As Object, e As RoutedEventArgs) Handles Clear.Click
         imgList.Items.Clear()
+        enabledesableButtons()
     End Sub
 
     Private Sub pdfsave_Click(sender As Object, e As RoutedEventArgs) Handles pdfsave.Click
@@ -246,6 +251,38 @@ Class I2pMain
 
     Private Sub worker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles worker.RunWorkerCompleted
         progGrid.Visibility = Windows.Visibility.Hidden
+    End Sub
+
+    Private Sub enabledesableButtons()
+        Dim ImageCount = imgList.Items.Count
+        Dim SelectionCount = imgList.SelectedItems.Count
+
+        If ImageCount = 0 Then
+            Add.IsEnabled = True
+            Remove.IsEnabled = False
+            up.IsEnabled = False
+            down.IsEnabled = False
+            Clear.IsEnabled = False
+            pdfsave.IsEnabled = False
+        ElseIf SelectionCount = 0 Then
+            Add.IsEnabled = True
+            Remove.IsEnabled = False
+            up.IsEnabled = False
+            down.IsEnabled = False
+            Clear.IsEnabled = True
+            pdfsave.IsEnabled = True
+        Else
+            Add.IsEnabled = True
+            Remove.IsEnabled = True
+            up.IsEnabled = True
+            down.IsEnabled = True
+            Clear.IsEnabled = True
+            pdfsave.IsEnabled = True
+        End If
+    End Sub
+
+    Private Sub I2pMain_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        enabledesableButtons()
     End Sub
 End Class
 

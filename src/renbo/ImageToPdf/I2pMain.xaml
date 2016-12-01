@@ -39,6 +39,10 @@
                                 <Setter Property="Background" Value="#FF535353" />
                                 <Setter Property="Foreground" Value="White" />
                             </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.4" />
+                                 
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -123,7 +127,7 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="0,0,0,3" BorderBrush="#FF3A3A3A">
+                    <Border BorderThickness="0,0,0,3" BorderBrush="#FF3A3A3A" Margin="5,0,0,0">
                         <StackPanel Margin="0,5,0,0">
 
                             <TextBlock Text="{Binding Name}" FontSize="15"  />
