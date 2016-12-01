@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:renbo" x:Class="I2pMain" 
       mc:Ignorable="d"
-      Title="I2pMain" d:DesignWidth="463" d:DesignHeight="350" MinHeight="300" MinWidth="300" >
+      Title="I2pMain" d:DesignWidth="763" d:DesignHeight="350" MinHeight="300" MinWidth="300"   >
 
     <Page.Resources>
         <Style TargetType="{x:Type Button}">
@@ -24,7 +24,7 @@
                             <Grid>
                                 <!--<Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>-->
 
-                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
                             </Grid>
                         </Border>
 
@@ -36,7 +36,7 @@
                             </Trigger>
 
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#FF000CFF" />
+                                <Setter Property="Background" Value="#FF535353" />
                                 <Setter Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -45,7 +45,12 @@
             </Setter>
         </Style>
 
-
+        <Style x:Key="btnLogo" TargetType="TextBlock">
+            <!--Foreground="Black" FontSize="15" Margin="0,3"-->
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
         <ControlTemplate x:Key="RBTemplate" TargetType="RepeatButton">
             <Rectangle Fill="Transparent" />
          </ControlTemplate>
@@ -84,24 +89,24 @@
             </Grid>
             </ControlTemplate>
         
-        <Style x:Key="{x:Type ScrollBar}" TargetType="ScrollBar">
+        <!--<Style x:Key="{x:Type ScrollBar}" TargetType="ScrollBar">
             <Setter Property="MinWidth" Value="22" />
             <Setter Property="Background" Value="{StaticResource ThumbBrush}" />
             <Setter Property="BorderBrush" Value="#999999" />
             <Setter Property="Template" Value="{StaticResource VerticalScrollBarTemplate}" />
-        </Style>
+        </Style>-->
         
     </Page.Resources>
-    <Grid >
+    <Grid Background="White"  >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="233*"/>
             <ColumnDefinition Width="103*" MinWidth="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="75"/>
             <RowDefinition Height="88*"/>
         </Grid.RowDefinitions>
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Left"   Grid.Row="1" Width="7" Background="#FF7E7E7E"/>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Left"   Grid.Row="1" Width="4" Background="#FF3C3C3C"/>
         <Grid Margin="17,10,10,10" Grid.Column="1"  Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="215*"/>
@@ -134,37 +139,43 @@
 
         <Grid Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" Margin="10,5"  >
-                <Button x:Name="Add" Width="40">
+                <Button x:Name="Add" Width="100">
                     <StackPanel>
-                        <Image Source="/renbo;component/Images/bitmap.png" />
+                        <Image Width="30" Source="/renbo;component/Images/bitmap.png" />
+                        <TextBlock  Style="{StaticResource btnLogo}">Add Images</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Remove" Width="40" >
+                <Button x:Name="Remove" Width="100" >
                     <StackPanel>
-                        <Image Source="/renbo;component/Images/remove.png" />
+                        <Image Width="30" Source="/renbo;component/Images/remove.png" />
+                        <TextBlock Style="{StaticResource btnLogo}">Remove</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="up" Width="40" >
+                <Button x:Name="up" Width="100" >
                     <StackPanel>
-                        <Image Source="/renbo;component/Images/up.png" />
+                        <Image Width="30" Source="/renbo;component/Images/up.png" />
+                        <TextBlock  Style="{StaticResource btnLogo}">Move Up</TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button x:Name="down" Width="40" >
+                <Button x:Name="down" Width="100" >
                     <StackPanel>
-                        <Image Source="/renbo;component/Images/Down.png" />
+                        <Image  Width="30" Source="/renbo;component/Images/Down.png" />
+                        <TextBlock Style="{StaticResource btnLogo}">Move Down</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Clear" Width="40" >
+                <Button x:Name="Clear" Width="100" >
                     <StackPanel>
-                        <Image Source="/renbo;component/Images/Clear.png" />
+                        <Image Width="30" Source="/renbo;component/Images/Clear.png" />
+                        <TextBlock Style="{StaticResource btnLogo}">Clear All</TextBlock>
                     </StackPanel>
                 </Button>
-                <Rectangle Width="2" Fill="#FF8B8B8B" Margin="10,0,20,0" />
+                <Rectangle Width="2"   Fill="#FF8B8B8B" Margin="10,10,20,10" />
               <!--  <Button x:Name="optionbtn" Width="40" Content="Option"/>-->
-                <Button x:Name="pdfsave" Width="40"  >
-                    <StackPanel>
-                        <Image Source="/renbo;component/Images/save.png" />
+                <Button x:Name="pdfsave" Width="100"  >
+                    <StackPanel  >
+                        <Image Width="30" Source="/renbo;component/Images/save.png" />
+                        <TextBlock Style="{StaticResource btnLogo}">Export PDF</TextBlock>
                     </StackPanel>
                 </Button>
             </StackPanel>
