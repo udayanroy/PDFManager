@@ -16,11 +16,12 @@
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="Width" Value="50" />
             <Setter Property="Margin" Value="0,0,5,0" />
-            
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Opacity" Value=".8"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border CornerRadius="0" Background="{TemplateBinding Background}">
+                        <Border CornerRadius="2" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="#FF3591FF">
                             <Grid>
                                 <!--<Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>-->
 
@@ -30,14 +31,15 @@
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FFD8D7D3" />
+                                <Setter Property="Background" Value="#FFBFE5FF" />
                                 <Setter Property="Foreground" Value="White" />
                                 <!-- <Setter TargetName="PathIcon" Property="Fill" Value="Black" />-->
                             </Trigger>
 
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#FF535353" />
+                                <Setter Property="Background" Value="#FF7EC4F3" />
                                 <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderThickness" Value="1"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" Value="0.4" />
@@ -139,6 +141,84 @@
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"  Color="Red" />
+                <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#FFD7E9FF" />
+ 
+                <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+                <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
+                    <Setter Property="SnapsToDevicePixels" Value="true"/>
+                    <Setter Property="OverridesDefaultStyle" Value="true"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Grid Background="Transparent">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="fillColor" Storyboard.TargetProperty="Opacity" Duration="0" To=".35"/>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Visibility" Duration="0">
+                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                            <DiscreteObjectKeyFrame.Value>
+                                                                <Visibility>Visible</Visibility>
+                                                            </DiscreteObjectKeyFrame.Value>
+                                                        </DiscreteObjectKeyFrame>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                        
+                                        <VisualStateGroup x:Name="SelectionStates">
+                                            <VisualState x:Name="Unselected" />
+                                            <VisualState x:Name="Selected">
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="fillColor2" Storyboard.TargetProperty="Opacity" Duration="0" To=".75"/>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Visibility" Duration="0">
+                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                            <DiscreteObjectKeyFrame.Value>
+                                                                <Visibility>Visible</Visibility>
+                                                            </DiscreteObjectKeyFrame.Value>
+                                                        </DiscreteObjectKeyFrame>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>                                            
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="FocusStates">
+                                            <VisualState x:Name="Focused" >
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Visibility" Duration="0">
+                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                            <DiscreteObjectKeyFrame.Value>
+                                                                <Visibility>Visible</Visibility>
+                                                            </DiscreteObjectKeyFrame.Value>
+                                                        </DiscreteObjectKeyFrame>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            
+                                            <VisualState x:Name="Unfocused">                                                 
+                                            </VisualState>
+
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle x:Name="fillColor" Opacity="0" Fill="#FFBADDE9" IsHitTestVisible="False" RadiusX="1" RadiusY="1"/>
+                                    <Rectangle x:Name="fillColor2" Opacity="0" Fill="#FFBADDE9" IsHitTestVisible="False" RadiusX="1" RadiusY="1"/>
+                                    <ContentPresenter
+                              x:Name="contentPresenter"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"/>
+                                    <Rectangle x:Name="FocusVisualElement" Stroke="#FF6DBDD1" StrokeThickness="1" Visibility="Collapsed" RadiusX="1" RadiusY="1" />
+                                </Grid>
+                                 
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.Resources>
         </ListBox>
 
         <Grid Grid.ColumnSpan="2">
@@ -174,12 +254,18 @@
                         <TextBlock Style="{StaticResource btnLogo}">Clear All</TextBlock>
                     </StackPanel>
                 </Button>
-                <Rectangle Width="2"   Fill="#FF8B8B8B" Margin="10,10,20,10" />
+                <Rectangle Width="2"   Fill="#FF8B8B8B" Margin="10,10,10,10" />
               <!--  <Button x:Name="optionbtn" Width="40" Content="Option"/>-->
                 <Button x:Name="pdfsave" Width="100"  >
                     <StackPanel  >
                         <Image Width="30" Source="/renbo;component/Images/save.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Export PDF</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="settingsBtn" Width="100"  >
+                    <StackPanel  >
+                        <Image Width="30" Source="/renbo;component/Images/gear.png" />
+                        <TextBlock Style="{StaticResource btnLogo}">PDF Settings</TextBlock>
                     </StackPanel>
                 </Button>
             </StackPanel>

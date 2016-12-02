@@ -77,7 +77,7 @@ Class I2pMain
                 For Each item In selected
                     imgList.SelectedItems.Add(item)
                 Next
-                imgList.Focus()
+                imgList.ScrollIntoView(selected(0))
             End If
 
         End If
@@ -130,7 +130,7 @@ Class I2pMain
                 For Each item In selected
                     imgList.SelectedItems.Add(item)
                 Next
-                imgList.Focus()
+                imgList.ScrollIntoView(selected(0))
             End If
         End If
     End Sub
@@ -264,6 +264,7 @@ Class I2pMain
             down.IsEnabled = False
             Clear.IsEnabled = False
             pdfsave.IsEnabled = False
+            settingsBtn.IsEnabled = False
         ElseIf SelectionCount = 0 Then
             Add.IsEnabled = True
             Remove.IsEnabled = False
@@ -271,6 +272,7 @@ Class I2pMain
             down.IsEnabled = False
             Clear.IsEnabled = True
             pdfsave.IsEnabled = True
+            settingsBtn.IsEnabled = True
         Else
             Add.IsEnabled = True
             Remove.IsEnabled = True
@@ -278,12 +280,25 @@ Class I2pMain
             down.IsEnabled = True
             Clear.IsEnabled = True
             pdfsave.IsEnabled = True
+            settingsBtn.IsEnabled = True
         End If
     End Sub
 
     Private Sub I2pMain_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         enabledesableButtons()
     End Sub
+
+    Private Sub settingsBtn_Click(sender As Object, e As RoutedEventArgs) Handles settingsBtn.Click
+        Dim settingdlg = New PDFSettingDlg()
+
+        ' Configure the dialog box
+        settingdlg.Owner = Window.GetWindow(Me)
+        'dlg.DocumentMargin = this.documentTextBox.Margin;
+
+        ' Open the dialog box modally 
+        settingdlg.ShowDialog()
+    End Sub
+
 End Class
 
 

@@ -89,6 +89,9 @@
     <Compile Include="ImageToPdf\I2pMain.xaml.vb">
       <DependentUpon>I2pMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageToPdf\PDFSettingDlg.xaml.vb">
+      <DependentUpon>PDFSettingDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Imglist.xaml.vb">
       <DependentUpon>Imglist.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImageToPdf\I2pMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageToPdf\PDFSettingDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,6 +256,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settingsico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cog-48.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gear.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
