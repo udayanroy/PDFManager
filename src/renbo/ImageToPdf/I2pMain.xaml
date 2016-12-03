@@ -8,7 +8,7 @@
       Title="I2pMain" d:DesignWidth="763" d:DesignHeight="350" MinHeight="300" MinWidth="300"   >
 
     <Page.Resources>
-        <Style TargetType="{x:Type Button}">
+        <Style x:Key="MenuBtn" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="White" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontSize" Value="15" />
@@ -122,8 +122,9 @@
             <Image x:Name="imgview" Grid.RowSpan="1" />
             <!-- <TextBlock  Grid.Row="1" TextWrapping="Wrap" Text="{Binding  SelectedItem.Name, ElementName=imgList}" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
  <!-- Source="{Binding SelectedItem.FullName, ElementName=imgList}"-->
-
         </Grid>
+        <Button Grid.Column="1"  Grid.Row="1" Background="#FF832424" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Opacity="1" />
+
         <ListBox x:Name="imgList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VirtualizingStackPanel.IsVirtualizing="True" SelectionMode="Extended" >
 
 
@@ -223,32 +224,32 @@
 
         <Grid Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" Margin="10,5"  >
-                <Button x:Name="Add" Width="100">
+                <Button x:Name="Add" Style="{StaticResource MenuBtn}" Width="100">
                     <StackPanel>
                         <Image Width="30" Source="/renbo;component/Images/bitmap.png" />
                         <TextBlock  Style="{StaticResource btnLogo}">Add Images</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Remove" Width="100" >
+                <Button x:Name="Remove" Width="100" Style="{StaticResource MenuBtn}">
                     <StackPanel>
                         <Image Width="30" Source="/renbo;component/Images/remove.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Remove</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="up" Width="100" >
+                <Button x:Name="up" Width="100" Style="{StaticResource MenuBtn}">
                     <StackPanel>
                         <Image Width="30" Source="/renbo;component/Images/up.png" />
                         <TextBlock  Style="{StaticResource btnLogo}">Move Up</TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button x:Name="down" Width="100" >
+                <Button x:Name="down" Width="100" Style="{StaticResource MenuBtn}">
                     <StackPanel>
                         <Image  Width="30" Source="/renbo;component/Images/Down.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Move Down</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Clear" Width="100" >
+                <Button x:Name="Clear" Width="100" Style="{StaticResource MenuBtn}">
                     <StackPanel>
                         <Image Width="30" Source="/renbo;component/Images/Clear.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Clear All</TextBlock>
@@ -256,13 +257,13 @@
                 </Button>
                 <Rectangle Width="2"   Fill="#FF8B8B8B" Margin="10,10,10,10" />
               <!--  <Button x:Name="optionbtn" Width="40" Content="Option"/>-->
-                <Button x:Name="pdfsave" Width="100"  >
+                <Button x:Name="pdfsave" Width="100"  Style="{StaticResource MenuBtn}">
                     <StackPanel  >
                         <Image Width="30" Source="/renbo;component/Images/save.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Export PDF</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="settingsBtn" Width="100"  >
+                <Button x:Name="settingsBtn" Width="100"  Style="{StaticResource MenuBtn}">
                     <StackPanel  >
                         <Image Width="30" Source="/renbo;component/Images/gear.png" />
                         <TextBlock Style="{StaticResource btnLogo}">PDF Settings</TextBlock>
