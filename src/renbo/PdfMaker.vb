@@ -12,7 +12,10 @@ Public Class PdfMaker
     Dim _metadata As PDFmetadata
 
     Public Sub New(outputFile As String)
-        outputstream = New FileStream(outputFile, FileMode.OpenOrCreate)
+        If File.Exists(outputFile) Then
+            File.Delete(outputFile)
+        End If
+        outputstream = New FileStream(outputFile, FileMode.Create)
     End Sub
 
     Public Sub Initialize()
@@ -35,7 +38,7 @@ Public Class PdfMaker
         document.AddAuthor(_option.Author)
         document.AddSubject(_option.Subject)
         '//////
-        
+
 
         If _option.isOwnerpasswordEnable Then
             pdfwriter.SetEncryption(pdfwriter.STRENGTH128BITS, _option.UserPassword, _option.OwnerPassword, pdfwriter.ALLOW_SCREENREADERS And pdfwriter.AllowPrinting)

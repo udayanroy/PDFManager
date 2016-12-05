@@ -123,7 +123,8 @@
             <!-- <TextBlock  Grid.Row="1" TextWrapping="Wrap" Text="{Binding  SelectedItem.Name, ElementName=imgList}" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
  <!-- Source="{Binding SelectedItem.FullName, ElementName=imgList}"-->
         </Grid>
-        <Button Grid.Column="1"  Grid.Row="1" Background="#FF832424" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Opacity="1" />
+        <!-- Collaps side view button
+        <Button Grid.Column="1"  Grid.Row="1" Background="#FF832424" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Opacity="1" />-->
 
         <ListBox x:Name="imgList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VirtualizingStackPanel.IsVirtualizing="True" SelectionMode="Extended" >
 

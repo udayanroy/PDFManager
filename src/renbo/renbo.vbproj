@@ -89,6 +89,7 @@
     <Compile Include="ImageToPdf\I2pMain.xaml.vb">
       <DependentUpon>I2pMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageToPdf\PasswordHelper.vb" />
     <Compile Include="ImageToPdf\PDFSettingDlg.xaml.vb">
       <DependentUpon>PDFSettingDlg.xaml</DependentUpon>
     </Compile>

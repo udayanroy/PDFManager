@@ -168,6 +168,27 @@ Public Class PDFmetadata
         size = PDFSize.GetPageSize(PageType.A4)
         isStrech = False
     End Sub
+
+    Public Shared Function FromPDFOption(pdfoption As pdfoption)
+        Dim metadata As New PDFmetadata()
+
+        With metadata
+            .Title = pdfoption.Title
+            .Author = pdfoption.Auther
+            .Subject = pdfoption.Subject
+
+            .isUserpasswordEnable = pdfoption.IsUserPassword
+            .isOwnerpasswordEnable = pdfoption.IsOwnerPassword
+            .UserPassword = pdfoption.userPassword
+            .OwnerPassword = pdfoption.ownerPassword
+
+            .sizetype = If(pdfoption.imagesizeAuto, sizingType.Auto, sizingType.Fixed)
+            .size = New Size(pdfoption.width, pdfoption.height)
+            .isStrech = If(pdfoption.imagesizeAuto, False, True)
+        End With
+
+        Return metadata
+    End Function
 End Class
 
 Public Structure PDFsecurity

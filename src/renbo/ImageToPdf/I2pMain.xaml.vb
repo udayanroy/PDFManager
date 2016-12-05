@@ -4,6 +4,8 @@ Imports System.ComponentModel
 
 Class I2pMain
 
+    Private _option As New pdfoption
+
     Private Sub Add_Click(sender As Object, e As RoutedEventArgs) Handles Add.Click
         ' Configure open file dialog box 
         Dim dlg As New Microsoft.Win32.OpenFileDialog()
@@ -212,7 +214,7 @@ Class I2pMain
 
 
 
-            Dim _metadata As New PDFmetadata
+            Dim _metadata = PDFmetadata.FromPDFOption(_option) 'As New PDFmetadata
             _metadata.OutputFile = file
             If IO.File.Exists(_metadata.OutputFile) Then
                 IO.File.Delete(_metadata.OutputFile)
@@ -294,9 +296,13 @@ Class I2pMain
         ' Configure the dialog box
         settingdlg.Owner = Window.GetWindow(Me)
         'dlg.DocumentMargin = this.documentTextBox.Margin;
-
+        settingdlg.SetPDFOption(_option)
         ' Open the dialog box modally 
-        settingdlg.ShowDialog()
+        Dim dr = settingdlg.ShowDialog()
+        If dr Then
+            _option = settingdlg.getPDFOption
+        End If
+
     End Sub
 
 End Class
