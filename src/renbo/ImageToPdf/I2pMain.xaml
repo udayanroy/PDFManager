@@ -227,32 +227,32 @@
             <StackPanel Orientation="Horizontal" Margin="10,5"  >
                 <Button x:Name="Add" Style="{StaticResource MenuBtn}" Width="100">
                     <StackPanel>
-                        <Image Width="30" Source="/renbo;component/Images/bitmap.png" />
+                        <Image Width="30" Source="/PDF Manager;component/Images/bitmap.png" />
                         <TextBlock  Style="{StaticResource btnLogo}">Add Images</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button x:Name="Remove" Width="100" Style="{StaticResource MenuBtn}">
                     <StackPanel>
-                        <Image Width="30" Source="/renbo;component/Images/remove.png" />
+                        <Image Width="30" Source="/PDF Manager;component/Images/remove.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Remove</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button x:Name="up" Width="100" Style="{StaticResource MenuBtn}">
                     <StackPanel>
-                        <Image Width="30" Source="/renbo;component/Images/up.png" />
+                        <Image Width="30" Source="/PDF Manager;component/Images/up.png" />
                         <TextBlock  Style="{StaticResource btnLogo}">Move Up</TextBlock>
                     </StackPanel>
                 </Button>
 
                 <Button x:Name="down" Width="100" Style="{StaticResource MenuBtn}">
                     <StackPanel>
-                        <Image  Width="30" Source="/renbo;component/Images/Down.png" />
+                        <Image  Width="30" Source="/PDF Manager;component/Images/Down.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Move Down</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button x:Name="Clear" Width="100" Style="{StaticResource MenuBtn}">
                     <StackPanel>
-                        <Image Width="30" Source="/renbo;component/Images/Clear.png" />
+                        <Image Width="30" Source="/PDF Manager;component/Images/Clear.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Clear All</TextBlock>
                     </StackPanel>
                 </Button>
@@ -260,13 +260,13 @@
               <!--  <Button x:Name="optionbtn" Width="40" Content="Option"/>-->
                 <Button x:Name="pdfsave" Width="100"  Style="{StaticResource MenuBtn}">
                     <StackPanel  >
-                        <Image Width="30" Source="/renbo;component/Images/save.png" />
+                        <Image Width="30" Source="/PDF Manager;component/Images/save.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Export PDF</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button x:Name="settingsBtn" Width="100"  Style="{StaticResource MenuBtn}">
                     <StackPanel  >
-                        <Image Width="30" Source="/renbo;component/Images/gear.png" />
+                        <Image Width="30" Source="/PDF Manager;component/Images/gear.png" />
                         <TextBlock Style="{StaticResource btnLogo}">PDF Settings</TextBlock>
                     </StackPanel>
                 </Button>
