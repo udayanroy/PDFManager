@@ -89,32 +89,19 @@
       <DependentUpon>pictureviewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PieProgressBar.vb" />
+    <Compile Include="ImageToPdf\core\imageItem.vb" />
+    <Compile Include="ImageToPdf\core\PDFmetadata.vb" />
+    <Compile Include="ImageToPdf\core\PDFSize.vb" />
     <Compile Include="ImageToPdf\I2pMain.xaml.vb">
       <DependentUpon>I2pMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageToPdf\PasswordHelper.vb" />
+    <Compile Include="ImageToPdf\core\PasswordHelper.vb" />
     <Compile Include="ImageToPdf\PDFSettingDlg.xaml.vb">
       <DependentUpon>PDFSettingDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Imglist.xaml.vb">
-      <DependentUpon>Imglist.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\optionpage.xaml.vb">
-      <DependentUpon>optionpage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\pdfoutput.xaml.vb">
-      <DependentUpon>pdfoutput.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ProgressPage.xaml.vb">
-      <DependentUpon>ProgressPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PdfMaker.vb" />
-    <Compile Include="pdfoption.vb" />
+    <Compile Include="ImageToPdf\core\PdfMaker.vb" />
+    <Compile Include="ImageToPdf\core\pdfoption.vb" />
     <Page Include="Controls\pictureviewer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ConverterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,10 +113,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="imgtopdfPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -138,33 +121,11 @@
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ConverterPage.xaml.vb">
-      <DependentUpon>ConverterPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="imgtopdfPage.xaml.vb">
-      <DependentUpon>imgtopdfPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.vb">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Imglist.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\optionpage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\pdfoutput.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ProgressPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resource4.xaml">
+    <Page Include="resource\Resource4.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -271,5 +232,6 @@
   <ItemGroup>
     <Resource Include="Images\gear.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

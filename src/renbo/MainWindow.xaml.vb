@@ -4,7 +4,7 @@
 
 Class MainWindow
 
-    Dim converter As New Imglist() 'imgtopdfPage()
+    ' Dim converter As New Imglist() 'imgtopdfPage()
 
     Public Sub New()
 
