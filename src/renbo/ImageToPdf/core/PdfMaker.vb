@@ -37,6 +37,8 @@ Public Class PdfMaker
         document.AddTitle(_option.Title)
         document.AddAuthor(_option.Author)
         document.AddSubject(_option.Subject)
+        document.AddCreationDate()
+        'document.
         '//////
 
 
