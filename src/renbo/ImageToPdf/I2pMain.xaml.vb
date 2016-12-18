@@ -157,7 +157,7 @@ Class I2pMain
             If imgList.SelectedItems.Count = 0 Then Exit Sub
 
             file = dlg.FileName
-            progbar.Progress = 0
+            progbar.Value = 0
             progGrid.Visibility = Windows.Visibility.Visible
             ' progbar.Dispatcher.BeginInvoke(DispatcherPriority.Normal, New Action(AddressOf SavePDF))
             ' Dim task As New Task(AddressOf SavePDF)
@@ -181,7 +181,7 @@ Class I2pMain
     Dim progress As Double
 
     Sub UpdateProgress(p As Integer)
-        progbar.Progress = p
+        'progbar.Progress = p
     End Sub
 
     Private Sub SavePDF()
@@ -198,7 +198,7 @@ Class I2pMain
         For i As Integer = 0 To nimg - 1
             converter.AddImage(imgList.Items(i).FullName)
 
-            progbar.Progress = CInt((i * 100) / nimg)
+            progbar.Value = CInt((i * 100) / nimg)
             ' progbar.Dispatcher.BeginInvoke(New ProgressUpdateDelegate(AddressOf Me.UpdateProgress), CInt((i * 100) / nimg))
         Next
 
@@ -228,9 +228,17 @@ Class I2pMain
                 progress = (i * 100) / nimg
                 worker.ReportProgress(progress)
                 ' progbar.Dispatcher.BeginInvoke(New ProgressUpdateDelegate(AddressOf Me.UpdateProgress), CInt((i * 100) / nimg))
+                If worker.CancellationPending Then
+                    e.Cancel = True
+                    Exit For
+                End If
             Next
 
             converter.close()
+
+            If e.Cancel Then
+                IO.File.Delete(_metadata.OutputFile)
+            End If
         Catch ex As Exception
             MessageBox.Show("ERROR: " & ex.Message)
         End Try
@@ -248,11 +256,16 @@ Class I2pMain
     End Sub
 
     Private Sub worker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles worker.ProgressChanged
-        progbar.Progress = progress
+        progbar.Value = progress
     End Sub
 
     Private Sub worker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles worker.RunWorkerCompleted
         progGrid.Visibility = Windows.Visibility.Hidden
+        If e.Cancelled Then
+            If IO.File.Exists(file) Then
+                IO.File.Delete(file)
+            End If
+        End If
     End Sub
 
     Private Sub enabledesableButtons()
@@ -305,6 +318,13 @@ Class I2pMain
 
     End Sub
 
+    Private Sub CancleBtn_Click(sender As Object, e As RoutedEventArgs) Handles CancleBtn.Click
+
+        If worker.IsBusy Then
+            worker.CancelAsync()
+        End If
+
+    End Sub
 End Class
 
 
