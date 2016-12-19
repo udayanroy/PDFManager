@@ -59,48 +59,48 @@
 
         <Grid Grid.ColumnSpan="2" >
             <StackPanel Orientation="Horizontal" Margin="10,5"   >
-                <Button x:Name="Add" Style="{StaticResource MenuBtn}" Width="100" ToolTip="Add Images"   >
+                <Button x:Name="Add" Style="{StaticResource MenuBtn}" Width="90" ToolTip="Add Images"   >
                     <StackPanel>
-                        <Image Width="30" Source="/PDF Manager;component/Images/bitmap.png" />
+                        <Image Width="25" Source="/PDF Manager;component/Images/bitmap.png" />
                         <TextBlock  Style="{StaticResource btnLogo}">Add Images</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Remove" Width="100" Style="{StaticResource MenuBtn}" ToolTip="Remove Selected Images">
+                <Button x:Name="Remove" Width="70" Style="{StaticResource MenuBtn}" ToolTip="Remove Selected Images">
                     <StackPanel>
-                        <Image Width="30" Source="/PDF Manager;component/Images/remove.png" />
+                        <Image Width="20" Source="/PDF Manager;component/Images/remove.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Remove</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="up" Width="100" Style="{StaticResource MenuBtn}">
+                <Button x:Name="up" Width="70" Style="{StaticResource MenuBtn}">
                     <StackPanel>
-                        <Image Width="30" Source="/PDF Manager;component/Images/up.png" />
+                        <Image Width="20" Source="/PDF Manager;component/Images/up.png" />
                         <TextBlock  Style="{StaticResource btnLogo}">Move Up</TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button x:Name="down" Width="100" Style="{StaticResource MenuBtn}">
+                <Button x:Name="down" Width="90" Style="{StaticResource MenuBtn}">
                     <StackPanel>
-                        <Image  Width="30" Source="/PDF Manager;component/Images/Down.png" />
+                        <Image  Width="20" Source="/PDF Manager;component/Images/Down.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Move Down</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Clear" Width="100" Style="{StaticResource MenuBtn}">
+                <Button x:Name="Clear" Width="80" Style="{StaticResource MenuBtn}">
                     <StackPanel>
-                        <Image Width="30" Source="/PDF Manager;component/Images/Clear.png" />
+                        <Image Width="20" Source="/PDF Manager;component/Images/Clear.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Clear All</TextBlock>
                     </StackPanel>
                 </Button>
-                <Rectangle Width="2"   Fill="#FF8B8B8B" Margin="10,10,10,10" />
+                <Rectangle Width="2"   Fill="#FF8B8B8B" Margin="5,10,10,10" />
                 <!--  <Button x:Name="optionbtn" Width="40" Content="Option"/>-->
-                <Button x:Name="pdfsave" Width="100"  Style="{StaticResource MenuBtn}">
+                <Button x:Name="pdfsave" Width="90"  Style="{StaticResource MenuBtn}">
                     <StackPanel  >
-                        <Image Width="30" Source="/PDF Manager;component/Images/save.png" />
+                        <Image Width="20" Source="/PDF Manager;component/Images/save.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Export PDF</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button x:Name="settingsBtn" Width="100"  Style="{StaticResource MenuBtn}">
                     <StackPanel  >
-                        <Image Width="30" Source="/PDF Manager;component/Images/gear.png" />
+                        <Image Width="20" Source="/PDF Manager;component/Images/gear.png" />
                         <TextBlock Style="{StaticResource btnLogo}">PDF Settings</TextBlock>
                     </StackPanel>
                 </Button>

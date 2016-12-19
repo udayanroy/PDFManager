@@ -126,7 +126,7 @@
     <Style x:Key="btnLogo" TargetType="TextBlock">
         <!--Foreground="Black" FontSize="15" Margin="0,3"-->
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Margin" Value="0,5"/>
     </Style>
     <ControlTemplate x:Key="RBTemplate" TargetType="RepeatButton">
