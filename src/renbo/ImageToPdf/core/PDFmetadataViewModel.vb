@@ -1,52 +1,30 @@
-﻿Imports System.ComponentModel
-Imports renbo
-
-Public Class PDFSettingDlg
-
-    Private OptionViewModel As pdfOptionVM = New pdfOptionVM()
+﻿
 
 
-    Private Sub PDFSettingDlg_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+Imports System.ComponentModel
 
-        Me.DataContext = OptionViewModel
-    End Sub
-
-    Public Sub SetPDFOption(pdfoption As pdfoption)
-        OptionViewModel.SetPDFOption(pdfoption)
-    End Sub
-
-    Public Function getPDFOption() As pdfoption
-        Return OptionViewModel.GetPDFOption
-    End Function
-
-    Private Sub okButton_Click(sender As Object, e As RoutedEventArgs) Handles okButton.Click
-        Me.DialogResult = True
-    End Sub
-End Class
-
-
-Public Class pdfOptionVM
+Public Class PDFmetadataViewModel
     Implements INotifyPropertyChanged
 
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
-    Private _PdfOption As pdfoption
+    Private _data As PDFmetadata
 
     Private _isCustom As Boolean = False
 
     Public Sub New()
-        _PdfOption = New pdfoption
-        InitializePageTypes()
-        Me.PDFPageType = PageTypes.Item(3)
+        _data = New PDFmetadata
+        'InitializePageTypes()
+        'Me.PDFPageType = PageTypes.Item(3)
     End Sub
 
     'Public Sub New(pdfoption As pdfoption)
     '    _PdfOption = pdfoption
     'End Sub
 
-    Public Sub SetPDFOption(pdfoption As pdfoption)
-        _PdfOption = pdfoption
-        If _PdfOption.pagetype Is Nothing Then
+    Public Sub SetPDFOption(pdfoption As PDFmetadata)
+        _data = pdfoption
+        If _data.pagetype Is Nothing Then
             Me.PDFPageType = PageTypes.Item(3)
         End If
         CheckIfCustom()
@@ -64,65 +42,65 @@ Public Class pdfOptionVM
 
     Public Property Title As String
         Get
-            Return _PdfOption.Title
+            Return _data.Title
         End Get
         Set(value As String)
-            _PdfOption.Title = value
+            _data.Title = value
             ChangedPropertyValue("Title")
         End Set
     End Property
 
-    Public Property Auther As String
+    Public Property Author As String
         Get
-            Return _PdfOption.Auther
+            Return _data.Author
         End Get
         Set(value As String)
-            _PdfOption.Auther = value
-            ChangedPropertyValue("Auther")
+            _data.Author = value
+            ChangedPropertyValue("Author")
         End Set
     End Property
 
     Public Property Subject As String
         Get
-            Return _PdfOption.Subject
+            Return _data.Subject
         End Get
         Set(value As String)
-            _PdfOption.Subject = value
+            _data.Subject = value
             ChangedPropertyValue("Subject")
         End Set
     End Property
 
-    Public Property isImagesizeAuto As Boolean
-        Get
-            Return _PdfOption.imagesizeAuto
-        End Get
-        Set(value As Boolean)
-            _PdfOption.imagesizeAuto = value
-            ChangedPropertyValue("isImagesizeAuto")
-            CheckIfCustom()
-        End Set
-    End Property
+    'Public Property isImagesizeAuto As Boolean
+    '    Get
+    '        Return _PdfOption.imagesizeAuto
+    '    End Get
+    '    Set(value As Boolean)
+    '        _PdfOption.imagesizeAuto = value
+    '        ChangedPropertyValue("isImagesizeAuto")
+    '        CheckIfCustom()
+    '    End Set
+    'End Property
 
-    Public Property isImagesizeStrech As Boolean
-        Get
-            Return Not _PdfOption.imagesizeAuto
-        End Get
-        Set(value As Boolean)
-            _PdfOption.imagesizeAuto = Not value
-            ChangedPropertyValue("isImagesizeStrech")
-            CheckIfCustom()
-        End Set
-    End Property
+    'Public Property isImagesizeStrech As Boolean
+    '    Get
+    '        Return Not _PdfOption.imagesizeAuto
+    '    End Get
+    '    Set(value As Boolean)
+    '        _PdfOption.imagesizeAuto = Not value
+    '        ChangedPropertyValue("isImagesizeStrech")
+    '        CheckIfCustom()
+    '    End Set
+    'End Property
 
     Public Shared Property PageTypes As IList
 
 
     Public Property PDFPageType As PDFPageType
         Get
-            Return _PdfOption.pagetype
+            Return _data.pagetype
         End Get
         Set(value As PDFPageType)
-            _PdfOption.pagetype = value
+            _data.pagetype = value
             ChangedPropertyValue("PDFPageType")
             SetPagesize(value)
         End Set
@@ -140,65 +118,65 @@ Public Class pdfOptionVM
 
     Public Property Width As Single
         Get
-            Return _PdfOption.width
+            Return _data.width
         End Get
         Set(value As Single)
-            _PdfOption.width = value
+            _data.width = value
             ChangedPropertyValue("Width")
         End Set
     End Property
 
     Public Property Height As Single
         Get
-            Return _PdfOption.height
+            Return _data.height
         End Get
         Set(value As Single)
-            _PdfOption.height = value
+            _data.height = value
             ChangedPropertyValue("Height")
         End Set
     End Property
 
     Public Property OwnerPassword As String
         Get
-            Return _PdfOption.ownerPassword
+            Return _data.OwnerPassword
         End Get
         Set(value As String)
-            _PdfOption.ownerPassword = value
+            _data.OwnerPassword = value
             ChangedPropertyValue("OwnerPassword")
         End Set
     End Property
 
     Public Property UserPassword As String
         Get
-            Return _PdfOption.userPassword
+            Return _data.UserPassword
         End Get
         Set(value As String)
-            _PdfOption.userPassword = value
+            _data.UserPassword = value
             ChangedPropertyValue("UserPassword")
         End Set
     End Property
 
     Public Property IsUserPassword As Boolean
         Get
-            Return _PdfOption.IsUserPassword
+            Return _data.isUserpasswordEnable
         End Get
         Set(value As Boolean)
-            _PdfOption.IsUserPassword = value
+            _data.isUserpasswordEnable = value
             ChangedPropertyValue("IsUserPassword")
         End Set
     End Property
     Public Property IsOwnerPassword As Boolean
         Get
-            Return _PdfOption.IsOwnerPassword
+            Return _data.isOwnerpasswordEnable
         End Get
         Set(value As Boolean)
-            _PdfOption.IsOwnerPassword = value
+            _data.isOwnerpasswordEnable = value
             ChangedPropertyValue("IsOwnerPassword")
         End Set
     End Property
     Private Sub CheckIfCustom()
 
-        If Not isImagesizeAuto AndAlso PDFPageType.Name = "Custom" Then
+        If PDFPageType.Name = "Custom" Then
             IsCustom = True
         Else
             IsCustom = False
@@ -215,8 +193,9 @@ Public Class pdfOptionVM
         CheckIfCustom()
     End Sub
 
-    Friend Function GetPDFOption() As pdfoption
-        Return _PdfOption
+    Friend Function GetPDFOption() As PDFmetadata
+        Return _data
     End Function
 
 End Class
+

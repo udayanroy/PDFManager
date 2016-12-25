@@ -93,6 +93,8 @@
     <Compile Include="Controls\ProgressToAngleConverter.vb" />
     <Compile Include="ImageToPdf\core\imageItem.vb" />
     <Compile Include="ImageToPdf\core\PDFmetadata.vb" />
+    <Compile Include="ImageToPdf\core\PDFmetadataViewModel.vb" />
+    <Compile Include="ImageToPdf\core\PDFPageType.vb" />
     <Compile Include="ImageToPdf\core\PDFSize.vb" />
     <Compile Include="ImageToPdf\I2pMain.xaml.vb">
       <DependentUpon>I2pMain.xaml</DependentUpon>
