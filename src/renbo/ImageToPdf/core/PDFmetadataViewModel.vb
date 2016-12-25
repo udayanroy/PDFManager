@@ -9,8 +9,8 @@ Public Class PDFmetadataViewModel
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
     Private _data As PDFmetadata
-
     Private _isCustom As Boolean = False
+
 
     Public Sub New()
         _data = New PDFmetadata
@@ -21,19 +21,18 @@ Public Class PDFmetadataViewModel
     'Public Sub New(pdfoption As pdfoption)
     '    _PdfOption = pdfoption
     'End Sub
+    Friend Function GetPDFOption() As PDFmetadata
+        Return _data
+    End Function
 
     Public Sub SetPDFOption(pdfoption As PDFmetadata)
         _data = pdfoption
-        If _data.pagetype Is Nothing Then
-            Me.PDFPageType = PageTypes.Item(3)
-        End If
+        'If _data.pagetype Is Nothing Then
+        '    Me.PDFPageType = PageTypes.Item(3)
+        'End If
         CheckIfCustom()
     End Sub
-    Private Sub InitializePageTypes()
-        If PageTypes Is Nothing Then
-            PageTypes = PDFPageType.GetPageTypes()
-        End If
-    End Sub
+
 
     Private Sub ChangedPropertyValue(propName As String)
         Dim arg As New PropertyChangedEventArgs(propName)
@@ -70,6 +69,35 @@ Public Class PDFmetadataViewModel
         End Set
     End Property
 
+    Public Property Creator As String
+        Get
+            Return _data.Creator
+        End Get
+        Set(value As String)
+            _data.Creator = value
+            ChangedPropertyValue("Creator")
+        End Set
+    End Property
+
+    Public Property Producer As String
+        Get
+            Return _data.Producer
+        End Get
+        Set(value As String)
+            _data.Producer = value
+            ChangedPropertyValue("Producer")
+        End Set
+    End Property
+
+    Public Property KeyWords As String
+        Get
+            Return _data.KeyWords
+        End Get
+        Set(value As String)
+            _data.KeyWords = value
+            ChangedPropertyValue("KeyWords")
+        End Set
+    End Property
     'Public Property isImagesizeAuto As Boolean
     '    Get
     '        Return _PdfOption.imagesizeAuto
@@ -92,8 +120,11 @@ Public Class PDFmetadataViewModel
     '    End Set
     'End Property
 
-    Public Shared Property PageTypes As IList
-
+    Public ReadOnly Property PageTypes As IList
+        Get
+            Return _data.PageTypeList
+        End Get
+    End Property
 
     Public Property PDFPageType As PDFPageType
         Get
@@ -133,6 +164,58 @@ Public Class PDFmetadataViewModel
         Set(value As Single)
             _data.height = value
             ChangedPropertyValue("Height")
+        End Set
+    End Property
+
+    Public ReadOnly Property OrientasionTypeList As IList
+        Get
+            Return _data.OrientasionTypeList
+        End Get
+    End Property
+
+    Public Property Orientasion As String
+        Get
+            Return _data.Orientasion
+        End Get
+        Set(value As String)
+            _data.Orientasion = value
+            ChangedPropertyValue("Orientasion")
+        End Set
+    End Property
+
+    Public ReadOnly Property ImageFillTypeList As IList
+        Get
+            Return _data.ImageFillTypeList
+        End Get
+    End Property
+
+    Public Property ImageFill As String
+        Get
+            Return _data.ImageFill
+        End Get
+        Set(value As String)
+            _data.ImageFill = value
+            ChangedPropertyValue("ImageFill")
+        End Set
+    End Property
+
+    Public Property BackColor As Color
+        Get
+            Return _data.BackColor
+        End Get
+        Set(value As Color)
+            _data.BackColor = value
+            ChangedPropertyValue("BackColor")
+        End Set
+    End Property
+
+    Public Property isImageFlipped As Boolean
+        Get
+            Return _data.isImageFlipped
+        End Get
+        Set(value As Boolean)
+            _data.isImageFlipped = value
+            ChangedPropertyValue("isImageFlipped")
         End Set
     End Property
 
@@ -193,9 +276,6 @@ Public Class PDFmetadataViewModel
         CheckIfCustom()
     End Sub
 
-    Friend Function GetPDFOption() As PDFmetadata
-        Return _data
-    End Function
 
 End Class
 
