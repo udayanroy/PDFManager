@@ -23,25 +23,35 @@
             <Button Width="80" Margin="10" Name="cancelButton" IsCancel="True">Cancel</Button>
             <Button Width="80" Margin="10" Name="okButton"   IsDefault="True">OK</Button>
         </StackPanel>
-        <TabControl   FontSize="15"   >
+        <TabControl x:Name="tbctrl"   FontSize="15"   >
             <TabItem Header="Information"  >
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="60*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="109"/>
-                        <ColumnDefinition Width="363*"/>
+                        <ColumnDefinition Width="125"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="textBlock" HorizontalAlignment="Right" Margin="5" Text="Title:" VerticalAlignment="Center" FontSize="15"/>
-                    <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="5" Text="Author:" VerticalAlignment="Center" FontSize="15" Grid.Row="1"/>
-                    <TextBlock x:Name="textBlock2" HorizontalAlignment="Right" Margin="5" Text="Subject:" VerticalAlignment="Center" FontSize="15" Grid.Row="2"/>
+                    <TextBlock   HorizontalAlignment="Right" Margin="0,10,10,0"  Text="Title:" VerticalAlignment="Top" FontSize="15" Height="20" Width="31"  />
+                    <TextBlock HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Author:" VerticalAlignment="Top" FontSize="15" Grid.Row="1" Height="20" Width="49"  />
+                    <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Subject:" VerticalAlignment="Top"  FontSize="15" Grid.Row="2" Height="20"     />
+                    <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Creator:" VerticalAlignment="Top"  FontSize="15" Grid.Row="3" Height="20"    />
+                    <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Producer:" VerticalAlignment="Top"  FontSize="15" Grid.Row="4" Height="20"    />
+                    <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Keywords:" VerticalAlignment="Top"  FontSize="15" Grid.Row="5" Height="20"    />
 
-                    <TextBox x:Name="textBox" Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Stretch"    Margin="5,10"     VerticalAlignment="Stretch" Text="{Binding Path=Title}" />
-                    <TextBox x:Name="textBox1" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Stretch"    Margin="5,10"     VerticalAlignment="Stretch"  Text="{Binding Path=Author}"/>
-                    <TextBox x:Name="textBox2" Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Stretch"    Margin="5,10"     VerticalAlignment="Stretch"  Text="{Binding Path=Subject}"/>
+                    <TextBox x:Name="textBox" Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Left"  Width="300"    Margin="5,5,0,5"     VerticalAlignment="Stretch" Text="{Binding Path=Title}" />
+                    <TextBox x:Name="textBox1" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Author}"/>
+                    <TextBox x:Name="textBox2" Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Subject}"  />
+                    <TextBox   Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Left"  Width="300"    Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Creator}"  />
+                    <TextBox   Grid.Column="1"  Grid.Row="4" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Producer}"  />
+                    <TextBox   Grid.Column="1"  Grid.Row="5" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=KeyWords}"  />
+
                 </Grid>
             </TabItem>
             <TabItem Header="Page" >
@@ -89,33 +99,39 @@
 
                     <StackPanel Grid.Row="5" Margin="10" Orientation="Horizontal"   >
                         <TextBlock   Text="Image Flipped:  " />
-                        <CheckBox> </CheckBox>
+                        <CheckBox IsChecked="{Binding Path=isImageFlipped}"></CheckBox>
                         <TextBlock   Text="  Background Color:  " />
-                        <Rectangle Width="30" Fill="White" Stroke="Black"></Rectangle>
+                        <Rectangle x:Name="clrblk" Width="30"  Stroke="Black">
+                            <Rectangle.Fill>
+                                <SolidColorBrush x:Name="sldbrsh" Color="{Binding Path=BackColor, Mode=TwoWay}"></SolidColorBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
                     </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Security" >
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Viewbox>
-                        <CheckBox Margin="6" IsChecked="{Binding Path=IsUserPassword}">Password to Open the file</CheckBox>
-                    </Viewbox>
+                <Viewbox Margin="10" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Viewbox>
+                            <CheckBox Margin="6" IsChecked="{Binding Path=IsUserPassword}">Password to Open the file</CheckBox>
+                        </Viewbox>
 
-                    <PasswordBox Margin="5" Grid.Row="1" FontSize="15"    local:PasswordHelper.Attach="True"
+                        <PasswordBox Margin="5" Grid.Row="1" FontSize="15"    local:PasswordHelper.Attach="True"
     local:PasswordHelper.Password="{Binding Path=UserPassword , Mode=TwoWay}" IsEnabled="{Binding Path=IsUserPassword}" />
 
-                    <Viewbox Grid.Row="2" >
-                        <CheckBox Margin="6" IsChecked="{Binding Path=IsOwnerPassword}">Password to Edit the file</CheckBox>
-                    </Viewbox>
-                    <PasswordBox  Margin="5" Grid.Row="3" FontSize="15"  local:PasswordHelper.Attach="True"
+                        <Viewbox Grid.Row="2" >
+                            <CheckBox Margin="6" IsChecked="{Binding Path=IsOwnerPassword}">Password to Edit the file</CheckBox>
+                        </Viewbox>
+                        <PasswordBox  Margin="5" Grid.Row="3" FontSize="15"  local:PasswordHelper.Attach="True"
     local:PasswordHelper.Password="{Binding Path=OwnerPassword, Mode=TwoWay}" IsEnabled="{Binding Path=IsOwnerPassword}"/>
-                </Grid>
+                    </Grid>
+                </Viewbox>
             </TabItem>
             <TabItem Header="Permission" >
 

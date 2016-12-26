@@ -3,11 +3,14 @@ Imports renbo
 
 Public Class PDFSettingDlg
 
+    Private Shared lastTab As Integer = 0
+
+
     Private OptionViewModel As PDFmetadataViewModel = New PDFmetadataViewModel()
 
 
     Private Sub PDFSettingDlg_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-
+        tbctrl.SelectedIndex = lastTab
         Me.DataContext = OptionViewModel
     End Sub
 
@@ -20,11 +23,31 @@ Public Class PDFSettingDlg
     End Function
 
     Private Sub okButton_Click(sender As Object, e As RoutedEventArgs) Handles okButton.Click
+        lastTab = tbctrl.SelectedIndex
         Me.DialogResult = True
     End Sub
 
     Private Sub cancelButton_Click(sender As Object, e As RoutedEventArgs) Handles cancelButton.Click
+        lastTab = tbctrl.SelectedIndex
         Me.DialogResult = False
+    End Sub
+
+    Private Sub clrblk_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles clrblk.MouseDown
+        Dim clrdlg As New Forms.ColorDialog
+        If (clrdlg.ShowDialog() = Forms.DialogResult.OK) Then
+            Dim c As New Color()
+            c.A = clrdlg.Color.A
+            c.R = clrdlg.Color.R
+            c.G = clrdlg.Color.G
+            c.B = clrdlg.Color.B
+            sldbrsh.Color = c
+        End If
+
+
+    End Sub
+
+    Private Sub PDFSettingDlg_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        lastTab = tbctrl.SelectedIndex
     End Sub
 End Class
 

@@ -82,6 +82,7 @@ Public Class PDFmetadata
         'isStrech = False
 
         PageTypeList = PDFPageType.GetPageTypes()
+
         CreateOriantaionList()
         CreateImageFillList()
 
@@ -90,7 +91,8 @@ Public Class PDFmetadata
         Me.ImageFill = ImageFillTypeList(0)
         Me.Orientasion = OrientasionTypeList(0)
         Me.BackColor = Colors.White
-
+        Me.width = pagetype.Width
+        Me.height = pagetype.Height
     End Sub
     '//  Deprecated Function  //
     Public Shared Function FromPDFOption(pdfoption As pdfoption)
