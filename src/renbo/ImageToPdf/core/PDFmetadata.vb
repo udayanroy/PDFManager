@@ -35,26 +35,62 @@ Public Class PDFmetadata
     'Public Property size As Size
     'Public Property sizetype As sizingType
 
-    Public Sub New()
+    Private Sub New()
+
+    End Sub
+
+    Public Shared Function CreateNew() As PDFmetadata
+        Dim data As New PDFmetadata
+        data.Init()
+        Return data
+    End Function
+    Public Function Clone() As PDFmetadata
+        Dim data As New PDFmetadata
+        With data
+            .Title = Me.Title
+            .Author = Me.Author
+            .Subject = Me.Subject
+            .Creator = Me.Creator
+            .Producer = Me.Producer
+            .KeyWords = Me.KeyWords
+
+            .isUserpasswordEnable = Me.isUserpasswordEnable
+            .isOwnerpasswordEnable = Me.isOwnerpasswordEnable
+            .UserPassword = UserPassword
+            .OwnerPassword = OwnerPassword
+
+            .pagetype = Me.pagetype
+            .PageTypeList = Me.PageTypeList
+            .width = Me.width
+            .height = Me.height
+            .ImageFill = Me.ImageFill
+            .ImageFillTypeList = Me.ImageFillTypeList
+            .Orientasion = Me.Orientasion
+            .OrientasionTypeList = Me.OrientasionTypeList
+            .BackColor = Me.BackColor
+            .isImageFlipped = Me.isImageFlipped
+        End With
+
+        Return data
+    End Function
+    Private Sub Init()
 
         isUserpasswordEnable = False
         isOwnerpasswordEnable = False
         'sizetype = sizingType.Auto
         ' size = PDFSize.GetPageSize(PageType.A4)
         'isStrech = False
-        InitList()
+
+        PageTypeList = PDFPageType.GetPageTypes()
+        CreateOriantaionList()
+        CreateImageFillList()
+
 
         Me.pagetype = PageTypeList(3)
         Me.ImageFill = ImageFillTypeList(0)
         Me.Orientasion = OrientasionTypeList(0)
         Me.BackColor = Colors.White
 
-    End Sub
-
-    Private Sub InitList()
-        PageTypeList = PDFPageType.GetPageTypes()
-        CreateOriantaionList()
-        CreateImageFillList()
     End Sub
     '//  Deprecated Function  //
     Public Shared Function FromPDFOption(pdfoption As pdfoption)
@@ -97,12 +133,3 @@ Public Class PDFmetadata
     End Sub
 End Class
 
-
-Public Class Oriantaion
-
-End Class
-
-
-Public Class ImageFill
-
-End Class

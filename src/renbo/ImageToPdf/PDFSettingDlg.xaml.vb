@@ -3,7 +3,7 @@ Imports renbo
 
 Public Class PDFSettingDlg
 
-    Private OptionViewModel As pdfOptionVM = New pdfOptionVM()
+    Private OptionViewModel As PDFmetadataViewModel = New PDFmetadataViewModel()
 
 
     Private Sub PDFSettingDlg_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
@@ -11,16 +11,20 @@ Public Class PDFSettingDlg
         Me.DataContext = OptionViewModel
     End Sub
 
-    Public Sub SetPDFOption(pdfoption As pdfoption)
-        OptionViewModel.SetPDFOption(pdfoption)
+    Public Sub SetPDFOption(pdfoption As PDFmetadata)
+        OptionViewModel.SetPDFOption(pdfoption.Clone)
     End Sub
 
-    Public Function getPDFOption() As pdfoption
+    Public Function getPDFOption() As PDFmetadata
         Return OptionViewModel.GetPDFOption
     End Function
 
     Private Sub okButton_Click(sender As Object, e As RoutedEventArgs) Handles okButton.Click
         Me.DialogResult = True
+    End Sub
+
+    Private Sub cancelButton_Click(sender As Object, e As RoutedEventArgs) Handles cancelButton.Click
+        Me.DialogResult = False
     End Sub
 End Class
 

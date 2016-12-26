@@ -13,7 +13,7 @@ Public Class PDFmetadataViewModel
 
 
     Public Sub New()
-        _data = New PDFmetadata
+        '_data = PDFmetadata.CreateNew
         'InitializePageTypes()
         'Me.PDFPageType = PageTypes.Item(3)
     End Sub

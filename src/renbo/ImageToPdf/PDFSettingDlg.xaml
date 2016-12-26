@@ -40,7 +40,7 @@
                     <TextBlock x:Name="textBlock2" HorizontalAlignment="Right" Margin="5" Text="Subject:" VerticalAlignment="Center" FontSize="15" Grid.Row="2"/>
 
                     <TextBox x:Name="textBox" Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Stretch"    Margin="5,10"     VerticalAlignment="Stretch" Text="{Binding Path=Title}" />
-                    <TextBox x:Name="textBox1" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Stretch"    Margin="5,10"     VerticalAlignment="Stretch"  Text="{Binding Path=Auther}"/>
+                    <TextBox x:Name="textBox1" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Stretch"    Margin="5,10"     VerticalAlignment="Stretch"  Text="{Binding Path=Author}"/>
                     <TextBox x:Name="textBox2" Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Stretch"    Margin="5,10"     VerticalAlignment="Stretch"  Text="{Binding Path=Subject}"/>
                 </Grid>
             </TabItem>
@@ -56,15 +56,15 @@
                         <RowDefinition Height="36*"/>
                     </Grid.RowDefinitions>
                     <Viewbox>
-                        <StackPanel Orientation="Horizontal" Margin="3" Visibility="Collapsed">
+                        <!--<StackPanel Orientation="Horizontal" Margin="3" Visibility="Collapsed">
                             <RadioButton Margin="0,0,25,0" IsChecked="{Binding Path=isImagesizeAuto}" >Auto</RadioButton>
                             <RadioButton IsChecked="{Binding Path=isImagesizeStrech}">Strech</RadioButton>
 
-                        </StackPanel>
+                        </StackPanel>-->
                     </Viewbox>
                     <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal">
                         <TextBlock   Text="Page Size: " />
-                        <ComboBox x:Name="comboBox1"  IsEnabled="{Binding isImagesizeStrech}"  ItemsSource="{Binding Path=PageTypes}" SelectedItem="{Binding Path=PDFPageType}" DisplayMemberPath="Name" Width="346" />
+                        <ComboBox x:Name="comboBox1" ItemsSource="{Binding Path=PageTypes}" SelectedItem="{Binding Path=PDFPageType}" DisplayMemberPath="Name" Width="346" />
 
                     </StackPanel>
                     <StackPanel Grid.Row="2" Margin="10" Orientation="Horizontal" HorizontalAlignment="Center"  >
@@ -79,12 +79,12 @@
 
                     <StackPanel Grid.Row="3" Margin="10" Orientation="Horizontal"  >
                         <TextBlock   Text="Image Placement:  " />
-                        <ComboBox x:Name="comboBox2"   Width="226" IsEnabled="{Binding isImagesizeStrech}"  ItemsSource="{Binding Path=PageTypes}" SelectedItem="{Binding Path=PDFPageType}" DisplayMemberPath="Name" />
+                        <ComboBox x:Name="comboBox2"   Width="226"  ItemsSource="{Binding Path=ImageFillTypeList}" SelectedItem="{Binding Path=ImageFill}"  />
                     </StackPanel>
 
                     <StackPanel Grid.Row="4" Margin="10" Orientation="Horizontal"   >
                         <TextBlock   Text="Orientation:  " />
-                        <ComboBox x:Name="comboBox3"   Width="146" IsEnabled="{Binding isImagesizeStrech}"  ItemsSource="{Binding Path=PageTypes}" SelectedItem="{Binding Path=PDFPageType}" DisplayMemberPath="Name" />
+                        <ComboBox x:Name="comboBox3"   Width="146"  ItemsSource="{Binding Path=OrientasionTypeList}" SelectedItem="{Binding Path=Orientasion}"   />
                     </StackPanel>
 
                     <StackPanel Grid.Row="5" Margin="10" Orientation="Horizontal"   >

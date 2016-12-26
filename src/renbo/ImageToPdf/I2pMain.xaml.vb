@@ -4,7 +4,7 @@ Imports System.ComponentModel
 
 Class I2pMain
 
-    Private _option As New pdfoption
+    Private _option As PDFmetadata
 
     Private Sub Add_Click(sender As Object, e As RoutedEventArgs) Handles Add.Click
         ' Configure open file dialog box 
@@ -186,7 +186,7 @@ Class I2pMain
 
     Private Sub SavePDF()
 
-        Dim _metadata As New PDFmetadata
+        Dim _metadata = _option 'New PDFmetadata
         _metadata.OutputFile = file
         If IO.File.Exists(_metadata.OutputFile) Then
             IO.File.Delete(_metadata.OutputFile)
@@ -214,7 +214,7 @@ Class I2pMain
 
 
 
-            Dim _metadata = PDFmetadata.FromPDFOption(_option) 'As New PDFmetadata
+            Dim _metadata = _option 'PDFmetadata.FromPDFOption() 'As New PDFmetadata
             _metadata.OutputFile = file
             If IO.File.Exists(_metadata.OutputFile) Then
                 IO.File.Delete(_metadata.OutputFile)
@@ -300,6 +300,7 @@ Class I2pMain
     End Sub
 
     Private Sub I2pMain_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        _option = PDFmetadata.CreateNew
         enabledesableButtons()
     End Sub
 

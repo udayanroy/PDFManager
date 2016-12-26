@@ -60,18 +60,18 @@ Public Class PdfMaker
         Using imgstrm = System.IO.File.Open(file, FileMode.Open)
             Dim image = iTextSharp.text.Image.GetInstance(imgstrm)
 
-            If _metadata.sizetype = sizingType.Auto Then
-                pagerect = New Rectangle(image.Width, image.Height)
-            Else
+            'If _metadata.sizetype = sizingType.Auto Then
+            '    pagerect = New Rectangle(image.Width, image.Height)
+            'Else
 
-                pagerect = New Rectangle(_metadata.size.Width, _metadata.size.Height)
-                If _metadata.isStrech Then
-                    image.ScaleAbsolute(pagerect)
-                Else
-                    image.ScaleAbsolute(getbestfitImgsize(pagerect, New Rectangle(image.Width, image.Height)))
-                End If
+            '    pagerect = New Rectangle(_metadata.size.Width, _metadata.size.Height)
+            '    If _metadata.isStrech Then
+            '        image.ScaleAbsolute(pagerect)
+            '    Else
+            '        image.ScaleAbsolute(getbestfitImgsize(pagerect, New Rectangle(image.Width, image.Height)))
+            '    End If
 
-            End If
+            'End If
 
             image.SetAbsolutePosition(0, 0)
             document.SetPageSize(pagerect)
