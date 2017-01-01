@@ -154,7 +154,6 @@ Class I2pMain
 
         ' Process open file dialog box results 
         If result = True Then
-            If imgList.SelectedItems.Count = 0 Then Exit Sub
 
             file = dlg.FileName
             progbar.Value = 0

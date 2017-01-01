@@ -110,7 +110,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Security" >
-                <Viewbox Margin="10" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Viewbox Margin="10" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -118,17 +118,17 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Viewbox>
-                            <CheckBox Margin="6" IsChecked="{Binding Path=IsUserPassword}">Password to Open the file</CheckBox>
-                        </Viewbox>
+                          
+                        <CheckBox Margin="6" IsChecked="{Binding Path=IsUserPassword}"   FontSize="10">User Password</CheckBox>
 
-                        <PasswordBox Margin="5" Grid.Row="1" FontSize="15"    local:PasswordHelper.Attach="True"
+
+                        <PasswordBox Margin="5" Grid.Row="1" FontSize="10" Width="150" Height="16"  local:PasswordHelper.Attach="True"
     local:PasswordHelper.Password="{Binding Path=UserPassword , Mode=TwoWay}" IsEnabled="{Binding Path=IsUserPassword}" />
+                        <CheckBox  Grid.Row="2" Margin="6" IsChecked="{Binding Path=IsOwnerPassword}" FontSize="10">Owner Password </CheckBox>
 
-                        <Viewbox Grid.Row="2" >
-                            <CheckBox Margin="6" IsChecked="{Binding Path=IsOwnerPassword}">Password to Edit the file</CheckBox>
-                        </Viewbox>
-                        <PasswordBox  Margin="5" Grid.Row="3" FontSize="15"  local:PasswordHelper.Attach="True"
+                        <!--<Viewbox Grid.Row="2" >
+                        </Viewbox>-->
+                        <PasswordBox  Margin="5" Grid.Row="3" FontSize="10" Width="150" Height="16"    local:PasswordHelper.Attach="True"
     local:PasswordHelper.Password="{Binding Path=OwnerPassword, Mode=TwoWay}" IsEnabled="{Binding Path=IsOwnerPassword}"/>
                     </Grid>
                 </Viewbox>

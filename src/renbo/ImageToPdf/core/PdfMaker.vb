@@ -7,7 +7,7 @@ Public Class PdfMaker
     Dim outputstream As Stream
     Dim document As Document
     Dim pdfwriter As PdfWriter
-
+    Dim pagerect As Rectangle
 
     Dim _metadata As PDFmetadata
 
@@ -40,22 +40,32 @@ Public Class PdfMaker
         document.AddCreationDate()
         'document.
         '//////
+        document.SetMargins(10, 10, 10, 10)  ' its not working 
+
+        'If _option.isOwnerpasswordEnable Then
+        '    pdfwriter.SetEncryption(PdfWriter.STRENGTH128BITS, _option.UserPassword, _option.OwnerPassword, PdfWriter.ALLOW_SCREENREADERS And PdfWriter.AllowPrinting)
+
+        'Else
+        '    If _option.isUserpasswordEnable Then
+        '        pdfwriter.SetEncryption(pdfwriter.STRENGTH128BITS, _option.UserPassword, _option.UserPassword, pdfwriter.ALLOW_SCREENREADERS And pdfwriter.AllowPrinting)
+        '    End If
+        'End If
+        If _option.isOwnerpasswordEnable Or _option.isUserpasswordEnable Then
+
+            Dim userpass = If(_option.isUserpasswordEnable, _option.UserPassword, "")
+            Dim ownerpass = If(_option.isOwnerpasswordEnable, _option.OwnerPassword, "")
 
 
-        If _option.isOwnerpasswordEnable Then
-            pdfwriter.SetEncryption(pdfwriter.STRENGTH128BITS, _option.UserPassword, _option.OwnerPassword, pdfwriter.ALLOW_SCREENREADERS And pdfwriter.AllowPrinting)
 
-        Else
-            If _option.isUserpasswordEnable Then
-                pdfwriter.SetEncryption(pdfwriter.STRENGTH128BITS, _option.UserPassword, _option.UserPassword, pdfwriter.ALLOW_SCREENREADERS And pdfwriter.AllowPrinting)
-            End If
+            pdfwriter.SetEncryption(PdfWriter.STRENGTH128BITS, userpass, ownerpass, PdfWriter.ALLOW_SCREENREADERS And PdfWriter.AllowPrinting)
+
         End If
 
         document.Open()
 
     End Sub
     Public Sub AddImage(file As String)
-        Dim pagerect As Rectangle
+
 
         Using imgstrm = System.IO.File.Open(file, FileMode.Open)
             Dim image = iTextSharp.text.Image.GetInstance(imgstrm)
@@ -64,20 +74,45 @@ Public Class PdfMaker
             '    pagerect = New Rectangle(image.Width, image.Height)
             'Else
 
-            '    pagerect = New Rectangle(_metadata.size.Width, _metadata.size.Height)
-            '    If _metadata.isStrech Then
-            '        image.ScaleAbsolute(pagerect)
-            '    Else
-            '        image.ScaleAbsolute(getbestfitImgsize(pagerect, New Rectangle(image.Width, image.Height)))
-            '    End If
+            '# create pdf page...
 
-            'End If
+            Dim pageWidth = _metadata.width
+            Dim pageHeight = _metadata.height
 
-            image.SetAbsolutePosition(0, 0)
+            If _metadata.Orientasion = "Landscape" Then
+                pagerect = New Rectangle(pageHeight, pageWidth)
+            Else
+                pagerect = New Rectangle(pageWidth, pageHeight)
+            End If
             document.SetPageSize(pagerect)
-
             document.NewPage()
-            document.Add(image)
+
+            '# set color of the page...
+            Dim Background As New Rectangle(pagerect)
+            Dim color = _metadata.BackColor
+            Background.BackgroundColor = New BaseColor(color.R, color.G, color.B)
+            document.Add(Background)
+
+            '# place the Image within the page...
+            If _metadata.ImageFill = "Stretch" Then
+                AddStretchedImage(image)
+            ElseIf _metadata.ImageFill = "Fit" Then
+                AddFitImage(image)
+
+            ElseIf _metadata.ImageFill = "Fill" Then
+                AddFillImage(image)
+
+                'ElseIf _metadata.ImageFill = "Tile" Then
+
+
+            ElseIf _metadata.ImageFill = "Center" Then
+                AddCenterImage(image)
+
+                'ElseIf _metadata.ImageFill = "Span" Then
+
+
+            End If
+
         End Using
 
     End Sub
@@ -105,4 +140,83 @@ Public Class PdfMaker
 
         Return rect
     End Function
+
+    Private Function getFillSize(pagesize As Rectangle, imagesize As Rectangle) As Rectangle
+        Dim rect As Rectangle
+
+        Dim pn = pagesize.Width / pagesize.Height
+        Dim imn = imagesize.Width / imagesize.Height
+
+        Dim ih = pagesize.Width / imn
+
+        If ih <= pagesize.Height Then
+            rect = New Rectangle(-(imn * pagesize.Height), pagesize.Height)
+        Else
+            rect = New Rectangle(-pagesize.Width, ih)
+
+        End If
+
+        Return rect
+    End Function
+
+    Private Sub AddImage(Image As Image, rect As Rect, Optional isFlip As Boolean = False)
+        If isFlip Then
+            Image.ScaleAbsolute(-rect.Width, rect.Height)
+            Image.SetAbsolutePosition(rect.X + rect.Width, rect.Y)
+        Else
+            Image.ScaleAbsolute(rect.Width, rect.Height)
+            Image.SetAbsolutePosition(rect.X, rect.Y)
+        End If
+
+        document.Add(Image)
+    End Sub
+
+    Private Sub AddStretchedImage(Image As Image)
+        Dim rect As New Rect(0, 0, pagerect.Width, pagerect.Height)
+        Me.AddImage(Image, rect, _metadata.isImageFlipped)
+    End Sub
+
+    Private Sub AddFitImage(Image As Image)
+        Dim scaleRct = getbestfitImgsize(pagerect, New Rectangle(Image.Width, Image.Height))
+        Dim x = (pagerect.Width - scaleRct.Width) / 2
+        Dim y = (pagerect.Height - scaleRct.Height) / 2
+        Dim rect As New Rect(x, y, scaleRct.Width, scaleRct.Height)
+
+        Me.AddImage(Image, rect, _metadata.isImageFlipped)
+    End Sub
+
+    Private Sub AddFillImage(Image As Image)
+        Dim rect As Rect
+
+        Dim pn = pagerect.Width / pagerect.Height
+        Dim imn = Image.Width / Image.Height
+
+        Dim ih = pagerect.Width / imn
+
+        If ih <= pagerect.Height Then
+            Dim width = (imn * pagerect.Height)
+            Dim x = (pagerect.Width - width) / 2
+            rect = New Rect(x, 0, width, pagerect.Height)
+        Else
+            Dim y = (pagerect.Height - ih) / 2
+            rect = New Rect(0, y, pagerect.Width, ih)
+        End If
+
+
+        Me.AddImage(Image, rect, _metadata.isImageFlipped)
+    End Sub
+    Private Sub AddCenterImage(Image As Image)
+        Dim rect As Rect
+
+        Dim centerX = pagerect.Width / 2
+        Dim centerY = pagerect.Height / 2
+
+        Dim x = (pagerect.Width - Image.Width) / 2
+        Dim y = (pagerect.Height - Image.Height) / 2
+
+        rect = New Rect(x, y, Image.Width, Image.Height)
+
+        Me.AddImage(Image, rect, _metadata.isImageFlipped)
+    End Sub
+
 End Class

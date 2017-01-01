@@ -125,12 +125,12 @@ Public Class PDFmetadata
 
     Public Sub CreateImageFillList()
         Dim lst As New List(Of String)
-        lst.Add("Fill")
         lst.Add("Fit")
-        lst.Add("Strech")
-        lst.Add("Tile")
+        lst.Add("Fill")
+        lst.Add("Stretch")
+        'lst.Add("Tile")
         lst.Add("Center")
-        lst.Add("Span")
+        'lst.Add("Span")
         Me.ImageFillTypeList = lst
     End Sub
 End Class
