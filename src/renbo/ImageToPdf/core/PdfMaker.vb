@@ -55,13 +55,26 @@ Public Class PdfMaker
             Dim userpass = If(_option.isUserpasswordEnable, _option.UserPassword, "")
             Dim ownerpass = If(_option.isOwnerpasswordEnable, _option.OwnerPassword, "")
 
+            Dim permissions As Integer = 0
+
+            If _option.PrintingPermission Then
+                permissions = PdfWriter.AllowPrinting
+            End If
+            If _option.ChangingPermission Then
+                permissions = If(permissions, permissions And PdfWriter.AllowModifyContents, PdfWriter.AllowModifyContents)
+                permissions = permissions And PdfWriter.AllowScreenReaders
+                permissions = permissions And PdfWriter.AllowCopy
+                permissions = permissions And PdfWriter.AllowFillIn
+                permissions = permissions And PdfWriter.AllowAssembly
+                permissions = permissions And PdfWriter.AllowModifyAnnotations
+            End If
 
 
-            pdfwriter.SetEncryption(PdfWriter.STRENGTH128BITS, userpass, ownerpass, PdfWriter.ALLOW_SCREENREADERS And PdfWriter.AllowPrinting)
+            pdfwriter.SetEncryption(PdfWriter.STRENGTH128BITS, userpass, ownerpass, permissions)
 
-        End If
+            End If
 
-        document.Open()
+            document.Open()
 
     End Sub
     Public Sub AddImage(file As String)

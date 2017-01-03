@@ -257,6 +257,26 @@ Public Class PDFmetadataViewModel
             ChangedPropertyValue("IsOwnerPassword")
         End Set
     End Property
+    Public Property RestrictPrinting As Boolean
+        Get
+            Return Not _data.PrintingPermission
+        End Get
+        Set(value As Boolean)
+            _data.PrintingPermission = Not value
+            ChangedPropertyValue("RestrictPrinting")
+        End Set
+    End Property
+    Public Property RestrictEditing As Boolean
+        Get
+            Return Not _data.ChangingPermission
+        End Get
+        Set(value As Boolean)
+            _data.ChangingPermission = Not value
+            ChangedPropertyValue("RestrictEditing")
+        End Set
+    End Property
+
+
     Private Sub CheckIfCustom()
 
         If PDFPageType.Name = "Custom" Then

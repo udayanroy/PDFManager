@@ -110,32 +110,56 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Security" >
-                <Viewbox Margin="10" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                          
-                        <CheckBox Margin="6" IsChecked="{Binding Path=IsUserPassword}"   FontSize="10">User Password</CheckBox>
+                <!--<Viewbox Margin="10,10,0,10" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Height="169">-->
+                <Grid  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="41*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="41*"/>
+                        <RowDefinition Height="44*"/>
+                        <RowDefinition Height="40*"/>
+                    </Grid.RowDefinitions>
 
 
-                        <PasswordBox Margin="5" Grid.Row="1" FontSize="10" Width="150" Height="16"  local:PasswordHelper.Attach="True"
-    local:PasswordHelper.Password="{Binding Path=UserPassword , Mode=TwoWay}" IsEnabled="{Binding Path=IsUserPassword}" />
-                        <CheckBox  Grid.Row="2" Margin="6" IsChecked="{Binding Path=IsOwnerPassword}" FontSize="10">Owner Password </CheckBox>
+                    <StackPanel  Margin="5" Orientation="Horizontal"    >
+                        <CheckBox  Margin="3" IsChecked="{Binding Path=IsUserPassword}" />
+                        <TextBlock  Text="Required Password to open the Document" />
+                    </StackPanel>
 
-                        <!--<Viewbox Grid.Row="2" >
+                    <StackPanel Grid.Row="1" Margin="20,7" Orientation="Horizontal"    >
+                        <TextBlock  Text="Password:   " />
+                        <PasswordBox   Width="350"   local:PasswordHelper.Attach="True"
+                                local:PasswordHelper.Password="{Binding Path=UserPassword , Mode=TwoWay}" IsEnabled="{Binding Path=IsUserPassword}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Margin="7" Orientation="Horizontal"    >
+                        <CheckBox  Margin="3" IsChecked="{Binding Path=IsOwnerPassword}" />
+                        <TextBlock   Text="Restrict to edit and printing this Document" />
+                    </StackPanel>
+                    <!--<Viewbox Grid.Row="2" >
                         </Viewbox>-->
-                        <PasswordBox  Margin="5" Grid.Row="3" FontSize="10" Width="150" Height="16"    local:PasswordHelper.Attach="True"
-    local:PasswordHelper.Password="{Binding Path=OwnerPassword, Mode=TwoWay}" IsEnabled="{Binding Path=IsOwnerPassword}"/>
-                    </Grid>
-                </Viewbox>
-            </TabItem>
-            <TabItem Header="Permission" >
+                    <StackPanel Grid.Row="3"  Margin="20,7" Orientation="Horizontal"    >
+                        <TextBlock  Text="Password:   " />
+                        <PasswordBox   Width="350"     local:PasswordHelper.Attach="True"
+                            local:PasswordHelper.Password="{Binding Path=OwnerPassword, Mode=TwoWay}" IsEnabled="{Binding Path=IsOwnerPassword}" />
+                    </StackPanel>
 
+                    <StackPanel Grid.Row="4" Margin="20,7" Orientation="Horizontal" IsEnabled="{Binding Path=IsOwnerPassword}">
+                        <CheckBox  Margin="3" IsChecked="{Binding Path=RestrictPrinting}" />
+                        <TextBlock   Text="Restrict Printing" />                         
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5" Margin="20,7" Orientation="Horizontal" IsEnabled="{Binding Path=IsOwnerPassword}">
+                        <CheckBox  Margin="3"  IsChecked="{Binding Path=RestrictEditing}"/>
+                        <TextBlock   Text="Restrict Editing" />                         
+                    </StackPanel>
+                    
+                </Grid>
+                <!--</Viewbox>-->
             </TabItem>
+            
         </TabControl>
 
 

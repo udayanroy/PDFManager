@@ -20,6 +20,8 @@ Public Class PDFmetadata
     Public Property isOwnerpasswordEnable As Boolean
     Public Property UserPassword As String
     Public Property OwnerPassword As String
+    Public Property PrintingPermission As Boolean
+    Public Property ChangingPermission As Boolean
 
     'PDF Page Setting
     Public Property pagetype As PDFPageType
