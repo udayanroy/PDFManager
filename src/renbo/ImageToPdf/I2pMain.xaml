@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:renbo" x:Class="I2pMain" 
       mc:Ignorable="d"
-      Title="I2pMain" d:DesignWidth="763" d:DesignHeight="350" MinHeight="300" MinWidth="300"   >
+      Title="I2pMain" d:DesignWidth="863" d:DesignHeight="350" MinHeight="300" MinWidth="300"   >
 
     <Page.Resources>
 
         
        
     </Page.Resources>
-    <Grid Background="White" >
+    <Grid Background="White"  RenderOptions.BitmapScalingMode="HighQuality" UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="233*"/>
             <ColumnDefinition Width="103*" MinWidth="200"/>
@@ -35,7 +35,7 @@
         <!-- Collaps side view button
         <Button Grid.Column="1"  Grid.Row="1" Background="#FF832424" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Opacity="1" />-->
 
-        <ListBox x:Name="imgList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VirtualizingStackPanel.IsVirtualizing="True" SelectionMode="Extended" >
+        <ListBox x:Name="imgList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" VirtualizingStackPanel.IsVirtualizing="True" SelectionMode="Extended" >
 
 
             <ListBox.ItemTemplate>
@@ -59,32 +59,32 @@
 
         <Grid Grid.ColumnSpan="2" >
             <StackPanel Orientation="Horizontal" Margin="10,5"   >
-                <Button x:Name="Add" Style="{StaticResource MenuBtn}" Width="90" ToolTip="Add Images"   >
+                <Button x:Name="Add" Style="{StaticResource MenuBtn}" Width="90" ToolTip="Click to Add Images"   >
                     <StackPanel>
-                        <Image Width="25" Source="/PDF Manager;component/Images/bitmap.png" />
+                        <Image Width="20" Source="/PDF Manager;component/Images/bitmap.png" />
                         <TextBlock  Style="{StaticResource btnLogo}">Add Images</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Remove" Width="70" Style="{StaticResource MenuBtn}" ToolTip="Remove Selected Images">
+                <Button x:Name="Remove" Width="60" Style="{StaticResource MenuBtn}" ToolTip="Remove Selected Images">
                     <StackPanel>
                         <Image Width="20" Source="/PDF Manager;component/Images/remove.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Remove</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="up" Width="70" Style="{StaticResource MenuBtn}">
+                <Button x:Name="up" Width="60" Style="{StaticResource MenuBtn}" ToolTip="Move Selected Images up">
                     <StackPanel>
                         <Image Width="20" Source="/PDF Manager;component/Images/up.png" />
                         <TextBlock  Style="{StaticResource btnLogo}">Move Up</TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button x:Name="down" Width="90" Style="{StaticResource MenuBtn}">
+                <Button x:Name="down" Width="70" Style="{StaticResource MenuBtn}"  ToolTip="Move Selected Images Down">
                     <StackPanel>
                         <Image  Width="20" Source="/PDF Manager;component/Images/Down.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Move Down</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Clear" Width="80" Style="{StaticResource MenuBtn}">
+                <Button x:Name="Clear" Width="60" Style="{StaticResource MenuBtn}"  ToolTip="Remove All Image">
                     <StackPanel>
                         <Image Width="20" Source="/PDF Manager;component/Images/Clear.png" />
                         <TextBlock Style="{StaticResource btnLogo}">Clear All</TextBlock>
@@ -92,19 +92,43 @@
                 </Button>
                 <Rectangle Width="2"   Fill="#FF8B8B8B" Margin="5,10,10,10" />
                 <!--  <Button x:Name="optionbtn" Width="40" Content="Option"/>-->
-                <Button x:Name="pdfsave" Width="90"  Style="{StaticResource MenuBtn}">
-                    <StackPanel  >
-                        <Image Width="20" Source="/PDF Manager;component/Images/save.png" />
-                        <TextBlock Style="{StaticResource btnLogo}">Export PDF</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="settingsBtn" Width="100"  Style="{StaticResource MenuBtn}">
-                    <StackPanel  >
+
+                <Button x:Name="settingsBtn" Width="80"  Style="{StaticResource MenuBtn}"  ToolTip="Configure PDF">
+                    <StackPanel>
                         <Image Width="20" Source="/PDF Manager;component/Images/gear.png" />
                         <TextBlock Style="{StaticResource btnLogo}">PDF Settings</TextBlock>
                     </StackPanel>
                 </Button>
+                <Button x:Name="PrevwBtn" Width="60"  Style="{StaticResource MenuBtn}"  ToolTip="Preview PDF Output">
+                    <StackPanel  >
+                        <Image Width="20" Source="/PDF Manager;component/Images/eye.png" />
+                        <TextBlock Style="{StaticResource btnLogo}" HorizontalAlignment="Center">Preview</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="pdfsave" Width="80"  Style="{StaticResource MenuBtn}"   ToolTip="Save PDF File">
+                    <StackPanel  >
+                        <Image Width="30" Source="/PDF Manager;component/Images/save.png"/>
+                        <TextBlock Style="{StaticResource btnLogo}">Export PDF</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Rectangle Width="2"   Fill="#FF8B8B8B" Margin="5,10,10,10" />
+                <Button x:Name="infoBtn" Width="60"  Style="{StaticResource MenuBtn}">
+                    <StackPanel  >
+                        <Image   Width="30" Source="/PDF Manager;component/Images/info.png"  />
+                        <TextBlock Style="{StaticResource btnLogo}" HorizontalAlignment="Center">Help</TextBlock>
+                    </StackPanel>
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="cntxmnu">                               
+                            <MenuItem Header="Open Help" ></MenuItem>
+                            <MenuItem Header="Check Update"></MenuItem>
+                            <MenuItem Header="Bug Report"></MenuItem>
+                            <MenuItem Header="Feture Request"></MenuItem>
+                            <MenuItem Header="About PDF Manager"></MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
             </StackPanel>
+            
         </Grid>
 
 

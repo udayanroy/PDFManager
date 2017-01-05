@@ -87,18 +87,19 @@
         <Setter Property="FontSize" Value="15" />
         <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Width" Value="50" />
+        <!--<Setter Property="Width" Value="50" />-->
         <Setter Property="Margin" Value="0,0,5,0" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#003591FF" />
         <Setter Property="Opacity" Value=".8"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border CornerRadius="2" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="#FF3591FF">
-                        <Grid>
+                    <Border CornerRadius="2" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <Grid   >
                             <!--<Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>-->
 
-                            <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                            <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" />
                         </Grid>
                     </Border>
 
@@ -112,7 +113,8 @@
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="#FF7EC4F3" />
                             <Setter Property="Foreground" Value="White" />
-                            <Setter Property="BorderThickness" Value="1"/>
+                            <!--<Setter Property="BorderThickness" Value="1"/>-->
+                            <Setter Property="BorderBrush" Value="#FF3591FF" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" Value="0.4" />
@@ -173,7 +175,7 @@
             <Setter Property="BorderBrush" Value="#999999" />
             <Setter Property="Template" Value="{StaticResource VerticalScrollBarTemplate}" />
         </Style>-->
-    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"  Color="Red" />
+    <!--<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"  Color="Red" />-->
     <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#FFD7E9FF" />
 
     <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />

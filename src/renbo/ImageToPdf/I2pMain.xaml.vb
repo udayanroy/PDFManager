@@ -279,6 +279,7 @@ Class I2pMain
             Clear.IsEnabled = False
             pdfsave.IsEnabled = False
             settingsBtn.IsEnabled = False
+            PrevwBtn.IsEnabled = False
         ElseIf SelectionCount = 0 Then
             Add.IsEnabled = True
             Remove.IsEnabled = False
@@ -287,6 +288,7 @@ Class I2pMain
             Clear.IsEnabled = True
             pdfsave.IsEnabled = True
             settingsBtn.IsEnabled = True
+            PrevwBtn.IsEnabled = True
         Else
             Add.IsEnabled = True
             Remove.IsEnabled = True
@@ -295,6 +297,7 @@ Class I2pMain
             Clear.IsEnabled = True
             pdfsave.IsEnabled = True
             settingsBtn.IsEnabled = True
+            PrevwBtn.IsEnabled = True
         End If
     End Sub
 
@@ -323,6 +326,36 @@ Class I2pMain
         If worker.IsBusy Then
             worker.CancelAsync()
         End If
+
+    End Sub
+
+    Private Sub PrevwBtn_Click(sender As Object, e As RoutedEventArgs) Handles PrevwBtn.Click
+        Dim prvdlg = New PreviewWindow()
+
+        ' Configure the dialog box
+        prvdlg.Owner = Window.GetWindow(Me)
+        'dlg.DocumentMargin = this.documentTextBox.Margin;
+        prvdlg.SetData(toList, _option)
+        ' Open the dialog box modally 
+        prvdlg.ShowDialog()
+
+
+    End Sub
+
+    Private Function toList() As List(Of imageItem)
+        Dim lst As New List(Of imageItem)(imgList.Items.Count)
+
+        For Each item As imageItem In imgList.Items
+            lst.Add(item)
+        Next
+
+        Return lst
+    End Function
+
+    Private Sub infoBtn_Click(sender As Object, e As RoutedEventArgs) Handles infoBtn.Click
+        cntxmnu.IsOpen = True
+        cntxmnu.StaysOpen = True
+
 
     End Sub
 End Class

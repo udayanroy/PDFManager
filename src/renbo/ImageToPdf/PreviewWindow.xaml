@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="PDF Output Preview" Height="700" Width="600">
     <Grid>
-        
+
+        <ListBox x:Name="listBox" IsEnabled="False"   ItemsSource="{Binding Path=Imagelist }"    VirtualizingStackPanel.IsVirtualizing="True"    >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border  BorderBrush="#FF3A3A3A"  >
+                        <Image Width="400"  Source="{Binding Path=FullName}"></Image>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
 </Window>
