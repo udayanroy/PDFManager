@@ -358,6 +358,16 @@ Class I2pMain
 
 
     End Sub
+
+    Private Sub aboutmnu_Click(sender As Object, e As RoutedEventArgs) Handles aboutmnu.Click
+        Dim aboutdlg = New AboutDialog()
+
+        ' Configure the dialog box
+        aboutdlg.Owner = Window.GetWindow(Me)
+
+        ' Open the dialog box modally 
+        aboutdlg.ShowDialog()
+    End Sub
 End Class
 
 

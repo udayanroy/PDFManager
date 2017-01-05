@@ -124,6 +124,9 @@
     </Compile>
     <Compile Include="Controls\PieProgressBar.vb" />
     <Compile Include="Controls\ProgressToAngleConverter.vb" />
+    <Compile Include="ImageToPdf\AboutDialog.xaml.vb">
+      <DependentUpon>AboutDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImageToPdf\core\imageItem.vb" />
     <Compile Include="ImageToPdf\core\PDFmetadata.vb" />
     <Compile Include="ImageToPdf\core\PDFmetadataViewModel.vb" />
@@ -139,6 +142,10 @@
     <Compile Include="ImageToPdf\core\PdfMaker.vb" />
     <Compile Include="ImageToPdf\core\pdfoption.vb" />
     <Page Include="Controls\pictureviewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageToPdf\AboutDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

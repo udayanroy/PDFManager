@@ -118,12 +118,12 @@
                         <TextBlock Style="{StaticResource btnLogo}" HorizontalAlignment="Center">Help</TextBlock>
                     </StackPanel>
                     <Button.ContextMenu>
-                        <ContextMenu x:Name="cntxmnu">                               
-                            <MenuItem Header="Open Help" ></MenuItem>
-                            <MenuItem Header="Check Update"></MenuItem>
-                            <MenuItem Header="Bug Report"></MenuItem>
-                            <MenuItem Header="Feture Request"></MenuItem>
-                            <MenuItem Header="About PDF Manager"></MenuItem>
+                        <ContextMenu x:Name="cntxmnu">
+                            <MenuItem x:Name="hlpmnu" Header="Open Help" ></MenuItem>
+                            <MenuItem x:Name="ckupmnu" Header="Check Update"></MenuItem>
+                            <MenuItem x:Name="brmnu" Header="Bug Report"></MenuItem>
+                            <MenuItem x:Name="frmnu"  Header="Feature Request"></MenuItem>
+                            <MenuItem x:Name="aboutmnu"  Header="About PDF Manager"></MenuItem>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
