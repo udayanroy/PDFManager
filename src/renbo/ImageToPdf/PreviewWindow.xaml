@@ -6,17 +6,37 @@
         xmlns:local="clr-namespace:renbo"
         mc:Ignorable="d"
         Title="PDF Output Preview" Height="700" Width="600">
-    <Grid>
+    <Grid  RenderOptions.BitmapScalingMode="NearestNeighbor">
 
-        <ListBox x:Name="listBox" IsEnabled="False"   ItemsSource="{Binding Path=Imagelist }"    VirtualizingStackPanel.IsVirtualizing="True"    >
-            <ListBox.ItemTemplate>
+        <ItemsControl x:Name="listBox"   
+                      IsManipulationEnabled="False"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"  
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                      ItemsSource="{Binding Path=Imagelist }"    
+                      VirtualizingStackPanel.IsVirtualizing="True"    >
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border  BorderBrush="#FF3A3A3A"  >
-                        <Image Width="400"  Source="{Binding Path=FullName}"></Image>
-                    </Border>
+                    <Grid Margin="10"  >
+                        <Image Width="400"  Source="{Binding Path=FullName}" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+                    </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <Border BorderBrush="#FF494949" BorderThickness="1">
+                        <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}"  >
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Border>
+
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
 
     </Grid>
 </Window>

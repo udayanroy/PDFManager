@@ -10,7 +10,7 @@
             <RowDefinition/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-       <Image x:Name="imgpreview" Grid.Row="0" Source="C:\Users\Udayan\Pictures\1211810004.png" Width="0"/>
+       <Image x:Name="imgpreview" Grid.Row="0"  Width="0"/>
        
     </Grid>
 </UserControl>

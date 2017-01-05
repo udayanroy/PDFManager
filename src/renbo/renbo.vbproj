@@ -128,6 +128,7 @@
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageToPdf\core\imageItem.vb" />
+    <Compile Include="ImageToPdf\core\ImageListViewModel.vb" />
     <Compile Include="ImageToPdf\core\PDFmetadata.vb" />
     <Compile Include="ImageToPdf\core\PDFmetadataViewModel.vb" />
     <Compile Include="ImageToPdf\core\PDFPageType.vb" />

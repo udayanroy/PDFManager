@@ -6,6 +6,8 @@ Class I2pMain
 
     Private _option As PDFmetadata
 
+    Dim viewmodel As New ImageListViewModel
+
     Private Sub Add_Click(sender As Object, e As RoutedEventArgs) Handles Add.Click
         ' Configure open file dialog box 
         Dim dlg As New Microsoft.Win32.OpenFileDialog()
@@ -20,12 +22,12 @@ Class I2pMain
         If result = True Then
             ' Open document 
             '  Dim filename As String = dlg.FileName
-            For Each fl As String In dlg.FileNames
+            'For Each fl As String In dlg.FileNames
 
-                imgList.Items.Add(New imageItem(fl))
+            '    imgList.Items.Add(New imageItem(fl))
 
-            Next
-
+            'Next
+            viewmodel.AddImages(dlg.FileNames)
         End If
         enabledesableButtons()
     End Sub
@@ -33,17 +35,24 @@ Class I2pMain
     Private Sub imgList_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles imgList.SelectionChanged
         If imgList.SelectedIndex <> -1 Then
             Dim item As imageItem = imgList.SelectedItem
-            Dim memorystrm As New IO.MemoryStream(IO.File.ReadAllBytes(item.FullName))
-            Dim btm As New BitmapImage
 
-            btm.BeginInit()
-            ' btm.UriSource = New Uri(item.FullName)
-            ' btm.CacheOption = BitmapCacheOption.OnLoad
-            btm.StreamSource = memorystrm
-            btm.EndInit()
 
-            imgview.Source = btm
-            btm.Freeze()
+            Me.Dispatcher.Invoke(Sub()
+                                     Dim memorystrm As New IO.MemoryStream(IO.File.ReadAllBytes(item.FullName))
+                                     Dim btm As New BitmapImage
+
+                                     btm.BeginInit()
+                                     ' btm.UriSource = New Uri(item.FullName)
+                                     ' btm.CacheOption = BitmapCacheOption.OnLoad
+                                     btm.StreamSource = memorystrm
+                                     btm.EndInit()
+
+                                     imgview.Source = btm
+                                     dimentionLbl.Text = btm.PixelWidth & "×" & btm.PixelHeight
+                                     item.Dimensions = dimentionLbl.Text
+                                     btm.Freeze()
+                                 End Sub)
+
             ' End Using
 
         End If
@@ -54,8 +63,8 @@ Class I2pMain
         Dim selected = New ArrayList(imgList.SelectedItems)
         For Each item In selected
 
-            imgList.Items.Remove(item) '; // or whereever you need to remove them..
-
+            ' imgList.Items.Remove(item) '; // or whereever you need to remove them..
+            viewmodel.ImageList.Remove(item)
         Next
         enabledesableButtons()
     End Sub
@@ -70,10 +79,11 @@ Class I2pMain
                 For Each item In selected
                     Dim index = imgList.Items.IndexOf(item)
 
-                    imgList.Items.Remove(item) '; // or whereever you need to remove them..
+                    'imgList.Items.Remove(item) '; // or whereever you need to remove them..
 
-                    imgList.Items.Insert(index - 1, item)
-
+                    'imgList.Items.Insert(index - 1, item)
+                    viewmodel.ImageList.Remove(item) '; // or whereever you need to remove them..
+                    viewmodel.ImageList.Insert(index - 1, item)
 
                 Next
                 For Each item In selected
@@ -123,10 +133,11 @@ Class I2pMain
                 For Each item In selected
                     Dim index = imgList.Items.IndexOf(item)
 
-                    imgList.Items.Remove(item) '; // or whereever you need to remove them..
+                    'imgList.Items.Remove(item) '; // or whereever you need to remove them..
 
-                    imgList.Items.Insert(index + 1, item)
-
+                    'imgList.Items.Insert(index + 1, item)
+                    viewmodel.ImageList.Remove(item) '; // or whereever you need to remove them..
+                    viewmodel.ImageList.Insert(index + 1, item)
 
                 Next
                 For Each item In selected
@@ -138,7 +149,8 @@ Class I2pMain
     End Sub
 
     Private Sub Clear_Click(sender As Object, e As RoutedEventArgs) Handles Clear.Click
-        imgList.Items.Clear()
+        viewmodel.ImageList.Clear()
+        ' imgList.Items.Clear()
         enabledesableButtons()
     End Sub
 
@@ -304,6 +316,7 @@ Class I2pMain
     Private Sub I2pMain_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         _option = PDFmetadata.CreateNew
         enabledesableButtons()
+        Me.DataContext = viewmodel
     End Sub
 
     Private Sub settingsBtn_Click(sender As Object, e As RoutedEventArgs) Handles settingsBtn.Click
