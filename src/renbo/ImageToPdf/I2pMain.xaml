@@ -110,7 +110,7 @@
                         <TextBlock Style="{StaticResource btnLogo}">PDF Settings</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="PrevwBtn" Width="60"  Style="{StaticResource MenuBtn}"  ToolTip="Preview PDF Output">
+                <Button x:Name="PrevwBtn" Width="60"  Style="{StaticResource MenuBtn}"  ToolTip="Preview PDF Output" Visibility="Collapsed">
                     <StackPanel  >
                         <Image Width="20" Source="/PDF Manager;component/Images/eye.png" />
                         <TextBlock Style="{StaticResource btnLogo}" HorizontalAlignment="Center">Preview</TextBlock>
