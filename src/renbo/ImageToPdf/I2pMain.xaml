@@ -130,8 +130,8 @@
                     </StackPanel>
                     <Button.ContextMenu>
                         <ContextMenu x:Name="cntxmnu">
-                            <MenuItem x:Name="hlpmnu" Header="Open Help" ></MenuItem>
-                            <MenuItem x:Name="ckupmnu" Header="Check Update"></MenuItem>
+                            <MenuItem x:Name="hlpmnu" Header="Open Online Help" ></MenuItem>
+                            <MenuItem x:Name="ckupmnu" Header="Check for Update"></MenuItem>
                             <MenuItem x:Name="brmnu" Header="Bug Report"></MenuItem>
                             <MenuItem x:Name="frmnu"  Header="Feature Request"></MenuItem>
                             <MenuItem x:Name="aboutmnu"  Header="About PDF Manager"></MenuItem>

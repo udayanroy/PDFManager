@@ -75,7 +75,7 @@
 
                    Content="Product details:" />
 
-                <TextBox x:Name="description" Height="120"   Text="PDFManager convert Images to PDF file, And its supports popular image type like JPEG, TIFF, PNG, EMF WMF."
+                <TextBox x:Name="description" Height="120"   Text="PDFManager convert Images to PDF file, And its supports popular image type like JPEG, TIFF, PNG, Bitmap, Gif."
 
                      Style="{StaticResource ReadOnlyDescStyle}" />
 
