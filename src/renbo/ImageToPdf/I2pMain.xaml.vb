@@ -276,6 +276,11 @@ Class I2pMain
             If IO.File.Exists(file) Then
                 IO.File.Delete(file)
             End If
+        Else
+
+            Dim res = MessageBox.Show(Window.GetWindow(Me), "Exporting PDF file complete. Click yes to Open file", "Complete", MessageBoxButton.YesNo, MessageBoxImage.Asterisk)
+            If res = MessageBoxResult.Yes Then Process.Start(file)
+
         End If
     End Sub
 
@@ -381,6 +386,23 @@ Class I2pMain
         ' Open the dialog box modally 
         aboutdlg.ShowDialog()
     End Sub
+
+    Private Sub brmnu_Click(sender As Object, e As RoutedEventArgs) Handles brmnu.Click
+        Process.Start("mailto:udaroy@gmail.com?subject=Bug:")
+    End Sub
+
+    Private Sub frmnu_Click(sender As Object, e As RoutedEventArgs) Handles frmnu.Click
+        Process.Start("mailto:udaroy@gmail.com?subject=Feature:")
+    End Sub
+
+    Private Sub hlpmnu_Click(sender As Object, e As RoutedEventArgs) Handles hlpmnu.Click
+        Process.Start("http://pdfmanager.sourceforge.net/help.php")
+    End Sub
+
+    Private Sub ckupmnu_Click(sender As Object, e As RoutedEventArgs) Handles ckupmnu.Click
+        Process.Start("http://pdfmanager.sourceforge.net/update.php?version=""0.4.2.0""")
+    End Sub
+
 End Class
 
 
