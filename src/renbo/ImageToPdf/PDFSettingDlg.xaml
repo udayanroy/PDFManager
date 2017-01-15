@@ -21,15 +21,15 @@
 
         <StackPanel Grid.Column="0" Grid.Row="1"  Orientation="Horizontal" FlowDirection="RightToLeft" Grid.ColumnSpan="2"  >
             <Button Width="80" Margin="10" Name="cancelButton" IsCancel="True">Cancel</Button>
-            <Button Width="80" Margin="10" Name="okButton"   IsDefault="True">OK</Button>
+            <Button Width="80" Margin="10" Name="okButton"   >OK</Button><!--IsDefault="True"-->
         </StackPanel>
         <TabControl x:Name="tbctrl"   FontSize="15"   >
             <TabItem Header="Information"  >
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40*"/>
-                        <RowDefinition Height="40*"/>
-                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="60*"/>
                         <RowDefinition Height="40*"/>
                         <RowDefinition Height="40*"/>
                         <RowDefinition Height="60*"/>
@@ -41,16 +41,16 @@
                     <TextBlock   HorizontalAlignment="Right" Margin="0,10,10,0"  Text="Title:" VerticalAlignment="Top" FontSize="15" Height="20" Width="31"  />
                     <TextBlock HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Author:" VerticalAlignment="Top" FontSize="15" Grid.Row="1" Height="20" Width="49"  />
                     <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Subject:" VerticalAlignment="Top"  FontSize="15" Grid.Row="2" Height="20"     />
-                    <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Creator:" VerticalAlignment="Top"  FontSize="15" Grid.Row="3" Height="20"    />
-                    <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Producer:" VerticalAlignment="Top"  FontSize="15" Grid.Row="4" Height="20"    />
-                    <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Keywords:" VerticalAlignment="Top"  FontSize="15" Grid.Row="5" Height="20"    />
+                    <!--<TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Creator:" VerticalAlignment="Top"  FontSize="15" Grid.Row="3" Height="20"    />-->
+                    <!--<TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Producer:" VerticalAlignment="Top"  FontSize="15" Grid.Row="4" Height="20"    />-->
+                    <TextBlock   HorizontalAlignment="Right"  Margin="0,10,10,0" Text="Keywords:"  VerticalAlignment="Top"  FontSize="15" Grid.Row="4" Height="20"    />
 
                     <TextBox x:Name="textBox" Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Left"  Width="300"    Margin="5,5,0,5"     VerticalAlignment="Stretch" Text="{Binding Path=Title}" />
                     <TextBox x:Name="textBox1" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Author}"/>
-                    <TextBox x:Name="textBox2" Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Subject}"  />
-                    <TextBox   Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Left"  Width="300"    Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Creator}"  />
-                    <TextBox   Grid.Column="1"  Grid.Row="4" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Producer}"  />
-                    <TextBox   Grid.Column="1"  Grid.Row="5" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=KeyWords}"  />
+                    <TextBox x:Name="textBox2" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="2" Grid.RowSpan="2"  HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Subject}"  />
+                    <!--<TextBox   Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Left"  Width="300"    Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Creator}"  />-->
+                    <!--<TextBox   Grid.Column="1"  Grid.Row="4" HorizontalAlignment="Left"  Width="300"   Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=Producer}"  />-->
+                    <TextBox   Grid.Column="1"  Grid.Row="4" Grid.RowSpan="2" HorizontalAlignment="Left"  Width="300" AcceptsReturn="True"  Margin="5,5,0,5"     VerticalAlignment="Stretch"  Text="{Binding Path=KeyWords}"  />
 
                 </Grid>
             </TabItem>

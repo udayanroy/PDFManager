@@ -37,6 +37,11 @@ Public Class PdfMaker
         document.AddTitle(_option.Title)
         document.AddAuthor(_option.Author)
         document.AddSubject(_option.Subject)
+        document.AddCreator("PDF Manager 0.4.2")
+        'document.AddHeader("Application", )
+        'document.AddHeader("Producer", _option.Producer)
+        'document.AddProducer()
+        document.AddKeywords(_option.KeyWords)
         document.AddCreationDate()
         'document.
         '//////
